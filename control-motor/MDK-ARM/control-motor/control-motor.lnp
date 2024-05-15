@@ -1,0 +1,25 @@
+--cpu Cortex-M3
+"control-motor\startup_stm32f103xb.o"
+"control-motor\main.o"
+"control-motor\gpio.o"
+"control-motor\tim.o"
+"control-motor\stm32f1xx_it.o"
+"control-motor\stm32f1xx_hal_msp.o"
+"control-motor\stm32f1xx_hal_gpio_ex.o"
+"control-motor\stm32f1xx_hal_tim.o"
+"control-motor\stm32f1xx_hal_tim_ex.o"
+"control-motor\stm32f1xx_hal.o"
+"control-motor\stm32f1xx_hal_rcc.o"
+"control-motor\stm32f1xx_hal_rcc_ex.o"
+"control-motor\stm32f1xx_hal_gpio.o"
+"control-motor\stm32f1xx_hal_dma.o"
+"control-motor\stm32f1xx_hal_cortex.o"
+"control-motor\stm32f1xx_hal_pwr.o"
+"control-motor\stm32f1xx_hal_flash.o"
+"control-motor\stm32f1xx_hal_flash_ex.o"
+"control-motor\stm32f1xx_hal_exti.o"
+"control-motor\system_stm32f1xx.o"
+--strict --scatter "control-motor\control-motor.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "control-motor.map" -o control-motor\control-motor.axf
