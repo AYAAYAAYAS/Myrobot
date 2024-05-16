@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "find_trace_GRAY.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,22 +89,14 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
-      HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,1);	//写入PA9高电平
-      HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,0);//写入PA10低电平
-      __HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1,400); //设置定时器3PWM1通道输出,占空比为400/500**在定时器初始中设置
-      HAL_Delay(5000);//延时5s
-      HAL_GPIO_WritePin(GPIOA,GPIO_PIN_9,0);
-      HAL_GPIO_WritePin(GPIOA,GPIO_PIN_10,1);
-     __HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1,300);
-      HAL_Delay(5000);
+		trace_red_2();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
