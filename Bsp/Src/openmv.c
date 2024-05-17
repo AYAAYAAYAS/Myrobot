@@ -7,7 +7,7 @@ void openmv_receive(int16_t Com_Data)
 	static uint8_t RxState=0;
 	static uint8_t RxCount=0;
 	int i ;
-	if(RxState == 0 && Com_Data == 0x2c)
+	if(RxState == 0 && Com_Data == 0x2c)//定义状态为0，帧头为0x2c，0x12的情况 
 	{
 		RxState=1;
 		openmv.RxBuffer[RxCount++]=0x2c;
@@ -61,3 +61,16 @@ void openmv_receive(int16_t Com_Data)
 			}
 		
 }	
+
+void USART1_IRQHandler(void)//串口中断函数用于接收从openmv接受到的数据 
+{
+	if (USART_GetITStatus(USART1, USART_IT_RXNE) == SET)
+	{
+		
+		Serial_RxData= USART_ReceiveData(USART1);//接受数据为串口1 
+		openmv_receive(Serial_RxData);//接受发过来的数据包 
+		Serial_RxFlag = 1;//标志位置1 
+		USART_ClearITPendingBit(USART1, USART_IT_RXNE);//清除标志 
+	}
+} 
+
