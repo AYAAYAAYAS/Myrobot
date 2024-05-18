@@ -1,3 +1,10 @@
+float Q_angle=0.001, Q_gyro=0.003, R_angle=0.5, dt=0.005;
+float P[2][2] = {{ 1, 0 },{ 0, 1 }};
+float Pdot[4] ={0,0,0,0};
+
+const char C_0 = 1;
+
+float q_bias, angle_err, PCt_0, PCt_1, E, K_0, K_1, t_0, t_1;
 void Kalman_Filter(float angle_m,float gyro_m)            //gyro_m:gyro_measure
 {
     angle+=(gyro_m-q_bias) * dt;//先验估计
