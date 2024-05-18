@@ -1,6 +1,7 @@
 #ifndef __OPENMV_H
 #define __OPENMV_H
 #include "main.h"
+#include <stdio.h>
 #define count 10
 
 typedef struct 

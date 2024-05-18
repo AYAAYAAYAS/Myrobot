@@ -1,7 +1,8 @@
 #include "openmv.h"
 
 _User_USART openmv;
-//PA9->p5 PA10->p4         
+//PA9->p5 PA10->p4     
+
 void openmv_receive(int16_t Com_Data)
 {
 	static uint8_t RxState=0;
@@ -61,6 +62,8 @@ void openmv_receive(int16_t Com_Data)
 			}
 		
 }	
+
+
 
 //void USART1_IRQHandler(void)//串口中断函数用于接收从openmv接受到的数据 
 //{
