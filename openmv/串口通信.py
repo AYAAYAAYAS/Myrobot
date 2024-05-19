@@ -35,7 +35,7 @@ def Sending_data(cx,cy,cw,ch):
                 int(cw),
                 int(ch),
                 0x5B)
-     uart.write(data);
+    uart.write(data);
 
 while(True):
     clock.tick()                    # Update the FPS clock.

@@ -36,13 +36,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-uint8_t aRxBuffer;			//接收中断缓冲
-uint8_t Uart1_RxBuff[256] = {0};		//接收缓冲
-uint8_t Uart1_Rx_Cnt = 0;		//接收缓冲计数
-uint8_t Uart1_RxFlag = 0;
-uint8_t	cAlmStr[] = "数据溢出(大于256)\r\n";
-uint8_t Serial_RxData;
-uint8_t cmd;
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -53,7 +47,8 @@ uint8_t cmd;
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-extern _User_USART openmv;
+extern  uint8_t Cx,Cy,Cw,Ch;;
+uint8_t cmd;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -75,7 +70,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+	
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -84,7 +79,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-	OLED_Init();
+	
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -99,20 +94,23 @@ int main(void)
   MX_TIM3_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-	
-	HAL_UART_Receive_IT(&huart1, &cmd, 3);
+	OLED_Init();
+	HAL_UART_Receive_IT(&huart1,(void *)&cmd, 1); 
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_RESET);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		trace_red_2();
-		OLED_ShowNum(1,1, openmv.X ,3);
-		OLED_ShowNum(2,1, openmv.Y ,3);
-		OLED_ShowNum(3,1, openmv.H ,3);
-		OLED_ShowNum(4,1, openmv.W ,3);
-
+//		trace_red_2();
+			OLED_ShowNum(1,2, Cx ,4);
+			OLED_ShowNum(2,2, Cy ,4);
+			OLED_ShowNum(3,2, Ch ,4);
+			OLED_ShowNum(4,2, Cw ,4);
+		
+		
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -162,12 +160,14 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
- 
-  if(huart->Instance == USART1){
-	Serial_RxData=cmd;
-	openmv_receive(Serial_RxData);
-	HAL_UART_Receive_IT(&huart1,&cmd, 3);   //再开启接收中断
+	uint16_t Serial_RxData;
+  if(huart->Instance==USART1){
+
+		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_SET);
+		Serial_RxData=cmd;	
+		openmv_receive(Serial_RxData);		
 	}	
+	HAL_UART_Receive_IT(&huart1,(void *)&cmd, 1);   //再开启接收中断
 }
 /* USER CODE END 4 */
 

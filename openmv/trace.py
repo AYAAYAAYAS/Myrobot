@@ -25,15 +25,16 @@ sensor.set_auto_whitebal(False) # 必须关闭白平衡
 clock = time.clock() # Tracks FPS.
 
 def Sending_data():
-    global uart;
+    global uart
+    global data
     data=ustruct.pack("<bbhhhhb",
                       0x2C,
                       0x12,
-                      int(buffer_1),
-                      int(buffer_2),
-                      int(buffer_3),
+                      buffer_1,
+                      buffer_2,
+                      buffer_3,
                       0x5B)
-   uart.write(data);
+    uart.write(data)
 
 
 while(True):
@@ -60,12 +61,17 @@ while(True):
  # 将偏离值转换成偏离角度.
     deflection_angle = math.degrees(deflection_volue)
 
-    buffer_1=center_pos;
-    buffer_2=deflection_volue;
-    buffer_3=deflection_angle
-    OUT_DATA =bytearray([0x2C,0x12,buffer_1, buffer_2,  buffer_3, 0x5B ] #发送数据包
-    uart.write(OUT_DATA)
+    buffer_1=int(center_pos*100)
+    buffer_2=int(deflection_angle*100)
+    buffer_3=1
+#    OUT_DATA =bytearray([0x2C,0x12,buffer_1, buffer_2,  buffer_3, 0x5B ])#发送数据包
+#    uart.write(OUT_DATA)
+    time.sleep_ms(1000)
+    Sending_data()
+
  # 计算偏离角度后可以控制机器人进行调整.
-    print(OUT_DATA)
+
+    print(center_pos)
+    print(data)
     print("Turn Angle: %f" % deflection_angle)
     print(clock.fps())

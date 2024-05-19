@@ -1,42 +1,44 @@
 #include "openmv.h"
-
-_User_USART openmv;
+#include "OLED.h"
 //PA9->p5 PA10->p4     
-
+uint8_t Cx=0,Cy=0,Cw=0,Ch=0;
 void openmv_receive(int16_t Com_Data)
 {
 	static uint8_t RxState=0;
 	static uint8_t RxCount=0;
+	static uint8_t RxBuffer[count]={0};			//接收缓存	
 	int i ;
-	if(RxState == 0 && Com_Data == 0x2c)//定义状态为0，帧头为0x2c，0x12的情况 
+	if(RxState == 0 && Com_Data == 0x2C)//定义状态为0，帧头为0x2c，0x12的情况 
 	{
 		RxState=1;
-		openmv.RxBuffer[RxCount++]=0x2c;
-		
+		RxBuffer[RxCount++]=0x2C;
+		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_SET);
 	}
 	
 	else if(RxState == 1 && Com_Data ==0x12)
 	{
 		RxState=2;
-		openmv.RxBuffer[RxCount++]=0x12;
+		RxBuffer[RxCount++]=0x12;
+		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_RESET);
 	}
 	
 	else if(RxState == 2)
 	{
-		openmv.RxBuffer[RxCount++]=Com_Data;
+		RxBuffer[RxCount++]=Com_Data;
 		if(RxCount >= 10 || Com_Data == 0x5B)
 		{
 			RxState=3;
-			openmv.X = openmv.RxBuffer[RxCount-5];
-			openmv.Y = openmv.RxBuffer[RxCount-4];
-			openmv.W = openmv.RxBuffer[RxCount-3];
-			openmv.H = openmv.RxBuffer[RxCount-2];
+			Cx= RxBuffer[RxCount-7];
+			Cy= RxBuffer[RxCount-6];
+			Cw= RxBuffer[RxCount-5];
+			Ch= RxBuffer[RxCount-4];
+
 			
 		}
 	}
 		else if(RxState==3)//接收结束标志
 		{
-			if(openmv.RxBuffer[RxCount-1] == 0x5B)
+			if(RxBuffer[RxCount-1] == 0x5B)
 			{
 				RxState= 0;
 				RxCount= 0;
@@ -47,7 +49,7 @@ void openmv_receive(int16_t Com_Data)
 				RxCount= 0;
 				for(i=0;i<10;i++)
 				{
-					openmv.RxBuffer[i]=0x00;
+					RxBuffer[i]=0x00;
 				}	
 			}
 		}	
@@ -57,7 +59,7 @@ void openmv_receive(int16_t Com_Data)
 				RxCount= 0;
 				for(i=0;i<10;i++)
 				{
-					openmv.RxBuffer[i]=0x00;
+					RxBuffer[i]=0x00;
 				}	
 			}
 		

@@ -39,7 +39,7 @@ void OLED_I2C_Stop(void)
 }
 
 /**
-  * @brief  I2C发送一个字节
+  * @brief  I2C 发送一个字节
   * @param  Byte 要发送的一个字节
   * @retval 无
   */
