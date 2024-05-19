@@ -1,5 +1,6 @@
 import sensor, image, time, math, ustruct
 from pyb import UART
+
 uart = UART(3,115200)#初始化串口3，波特率为115200
 uart.init(115200 ,bits = 8 ,parity = None ,stop = 1)#停止位8位，优先级无，停止位1
 # 追踪黑线。使用 [(128, 255)] 追踪白线.
@@ -27,11 +28,13 @@ clock = time.clock() # Tracks FPS.
 def Sending_data():
     global uart
     global data
-    data=ustruct.pack("<bbhhhhb",
+    data=ustruct.pack("<bbhhhhhb",
                       0x2C,
                       0x12,
-                      buffer_1,
-                      buffer_2,
+                      int(buffer_1_i),
+                      int(buffer_1_f),
+                      int(buffer_2_i),
+                      int(buffer_2_f),
                       buffer_3,
                       0x5B)
     uart.write(data)
@@ -61,17 +64,22 @@ while(True):
  # 将偏离值转换成偏离角度.
     deflection_angle = math.degrees(deflection_volue)
 
-    buffer_1=int(center_pos*100)
-    buffer_2=int(deflection_angle*100)
+    buffer_1_i=int(center_pos)
+    buffer_1_f=int((center_pos-buffer_1_i)*100)
+
+    buffer_2_i=int(deflection_angle)
+    buffer_2_f=int((deflection_angle-buffer_2_i)*100)
+
     buffer_3=1
+
 #    OUT_DATA =bytearray([0x2C,0x12,buffer_1, buffer_2,  buffer_3, 0x5B ])#发送数据包
 #    uart.write(OUT_DATA)
     time.sleep_ms(1000)
     Sending_data()
 
  # 计算偏离角度后可以控制机器人进行调整.
-
-    print(center_pos)
     print(data)
+    print(center_pos)
     print("Turn Angle: %f" % deflection_angle)
+
     print(clock.fps())
