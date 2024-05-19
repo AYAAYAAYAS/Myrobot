@@ -2,7 +2,7 @@
 #define __OPENMV_H
 #include "stm32f1xx.h"
 #include <stdio.h>
-#define count 10
+#define count 13
 
 
 void openmv_receive(int16_t Com_Data);
