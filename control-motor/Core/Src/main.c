@@ -47,7 +47,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-extern  uint8_t Cx,Cy,Cw,Ch;;
+extern uint8_t buffer_1_i,buffer_1_f,buffer_2_i,buffer_2_f,buffer_3;
 uint8_t cmd;
 /* USER CODE END PV */
 
@@ -105,10 +105,14 @@ int main(void)
   while (1)
   {
 //		trace_red_2();
-			OLED_ShowNum(1,2, Cx ,4);
-			OLED_ShowNum(2,2, Cy ,4);
-			OLED_ShowNum(3,2, Ch ,4);
-			OLED_ShowNum(4,2, Cw ,4);
+			OLED_ShowNum(1,2, buffer_1_i,4);OLED_ShowNum(1,7, buffer_1_f ,4);
+			OLED_ShowNum(2,2, buffer_2_i,4);OLED_ShowNum(2,7, buffer_2_f ,4);
+			OLED_ShowNum(3,2, buffer_3 ,4);
+      /*
+      0005 0027
+      0052 0030
+      0000 
+      */
 		
 		
     /* USER CODE END WHILE */
@@ -167,7 +171,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		Serial_RxData=cmd;	
 		openmv_receive(Serial_RxData);		
 	}	
-	HAL_UART_Receive_IT(&huart1,(void *)&cmd, 1);   //ÔÙ¿ªÆô½ÓÊÕÖĞ¶Ï
+	HAL_UART_Receive_IT(&huart1,(void *)&cmd, 1);   //é”ŸåŠ«åŒ¡æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«è®¹æ‹·
 }
 /* USER CODE END 4 */
 
