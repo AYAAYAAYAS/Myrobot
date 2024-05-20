@@ -8,8 +8,8 @@ typedef struct
 		int X;
 		int	Y;
 		int	W;
-		int H;							//处理数据
-		uint8_t RxBuffer[count];			//接收缓存	
+		int H;							//澶勭悊鏁版嵁
+		uint8_t RxBuffer[count];			//鎺ユ敹缂撳瓨	
 }_User_USART;
 
 void openmv_receive(int16_t Com_Data);
