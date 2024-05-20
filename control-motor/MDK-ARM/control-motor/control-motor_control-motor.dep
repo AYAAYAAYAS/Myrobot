@@ -1,6 +1,6 @@
 Dependencies for Project 'control-motor', Target 'control-motor': (DO NOT MODIFY !)
 F (startup_stm32f103xb.s)(0x664896E7)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_control-motor-I"F:\keil 5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include"-I"F:\keil 5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include"--pd "__UVISION_VERSION SETA 524" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1"--list startup_stm32f103xb.lst --xref -o control-motor\startup_stm32f103xb.o --depend control-motor\startup_stm32f103xb.d)
-F (../Core/Src/main.c)(0x66497FAC)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../USER/Inc -I ../Bsp/Inc-I.\RTE\_control-motor-I"F:\keil 5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include"-I"F:\keil 5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include"-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o control-motor\main.o --omf_browse control-motor\main.crf --depend control-motor\main.d)
+F (../Core/Src/main.c)(0x664AF0EF)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../USER/Inc -I ../Bsp/Inc-I.\RTE\_control-motor-I"F:\keil 5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include"-I"F:\keil 5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include"-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o control-motor\main.o --omf_browse control-motor\main.crf --depend control-motor\main.d)
 I (../Core/Inc/main.h)(0x664459DA)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x64E6CCEA)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x664874FA)
@@ -34,7 +34,7 @@ I (../Core/Inc/usart.h)(0x664874FA)
 I (../Core/Inc/gpio.h)(0x664459D8)
 I (../USER/Inc/find_trace_GRAY.h)(0x6645E3C3)
 I (../USER/Inc/OLED.h)(0x66251D84)
-I (../Bsp/Inc/openmv.h)(0x66497FAC)
+I (../Bsp/Inc/openmv.h)(0x664AF0C4)
 I (F:\keil 5\ARM\ARMCC\include\stdio.h)(0x588B8344)
 F (../Core/Src/gpio.c)(0x664874F8)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../USER/Inc -I ../Bsp/Inc-I.\RTE\_control-motor-I"F:\keil 5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include"-I"F:\keil 5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include"-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o control-motor\gpio.o --omf_browse control-motor\gpio.crf --depend control-motor\gpio.d)
 I (../Core/Inc/gpio.h)(0x664459D8)
@@ -710,8 +710,8 @@ I (../Drivers/CMSIS/Include/cmsis_version.h)(0x64E6CCD8)
 I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x64E6CCD8)
 I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x64E6CCD8)
 I (F:\keil 5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\system_stm32f10x.h)(0x5825386C)
-F (..\Bsp\Src\openmv.c)(0x66497FAC)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../USER/Inc -I ../Bsp/Inc-I.\RTE\_control-motor-I"F:\keil 5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include"-I"F:\keil 5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include"-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o control-motor\openmv.o --omf_browse control-motor\openmv.crf --depend control-motor\openmv.d)
-I (../Bsp/Inc/openmv.h)(0x66497FAC)
+F (..\Bsp\Src\openmv.c)(0x664AF43D)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../USER/Inc -I ../Bsp/Inc-I.\RTE\_control-motor-I"F:\keil 5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include"-I"F:\keil 5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include"-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o control-motor\openmv.o --omf_browse control-motor\openmv.crf --depend control-motor\openmv.d)
+I (../Bsp/Inc/openmv.h)(0x664AF0C4)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x64E6CCEA)
 I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h)(0x64E6CCEA)
 I (../Drivers/CMSIS/Include/core_cm3.h)(0x64E6CCD8)

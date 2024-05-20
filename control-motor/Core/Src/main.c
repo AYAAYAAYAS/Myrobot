@@ -47,7 +47,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-extern uint8_t buffer_1_i,buffer_1_f,buffer_2_i,buffer_2_f,buffer_3;
+extern float theta_err,rho_err;
 uint8_t cmd;
 /* USER CODE END PV */
 
@@ -105,9 +105,6 @@ int main(void)
   while (1)
   {
 //		trace_red_2();
-			OLED_ShowNum(1,2, buffer_1_i,4);OLED_ShowNum(1,7, buffer_1_f ,4);
-			OLED_ShowNum(2,2, buffer_2_i,4);OLED_ShowNum(2,7, buffer_2_f ,4);
-			OLED_ShowNum(3,2, buffer_3 ,4);
       /*
       0005 0027
       0052 0030
