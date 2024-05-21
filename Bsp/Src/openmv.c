@@ -7,7 +7,7 @@ void openmv_receive(int16_t Com_Data)
 	static uint8_t RxState=0;
 	static uint8_t RxCount=0;
 	int i ;
-	if(RxState == 0 && Com_Data == 0x2c)//¶¨Òå×´Ì¬Îª0£¬Ö¡Í·Îª0x2c£¬0x12µÄÇé¿ö 
+	if(RxState == 0 && Com_Data == 0x2c)//å®šä¹‰çŠ¶æ€ä¸º0ï¼Œå¸§å¤´ä¸º0x2cï¼Œ0x12çš„æƒ…å†µ 
 	{
 		RxState=1;
 		openmv.RxBuffer[RxCount++]=0x2c;
@@ -33,14 +33,14 @@ void openmv_receive(int16_t Com_Data)
 			
 		}
 	}
-		else if(RxState==3)//½ÓÊÕ½áÊø±êÖ¾
+		else if(RxState==3)//æ¥æ”¶ç»“æŸæ ‡å¿—
 		{
 			if(openmv.RxBuffer[RxCount-1] == 0x5B)
 			{
 				RxState= 0;
 				RxCount= 0;
 			}
-			else //Òì³£×´Ì¬
+			else //å¼‚å¸¸çŠ¶æ€
 			{
 				RxState= 0;
 				RxCount= 0;
@@ -50,7 +50,7 @@ void openmv_receive(int16_t Com_Data)
 				}	
 			}
 		}	
-		else//½ÓÊÕ×´Ì¬Òì³£
+		else//æ¥æ”¶çŠ¶æ€å¼‚å¸¸
 			{
 				RxState= 0;
 				RxCount= 0;
@@ -62,15 +62,15 @@ void openmv_receive(int16_t Com_Data)
 		
 }	
 
-void USART1_IRQHandler(void)//´®¿ÚÖĞ¶Ïº¯ÊıÓÃÓÚ½ÓÊÕ´Óopenmv½ÓÊÜµ½µÄÊı¾İ 
+void USART1_IRQHandler(void)//ä¸²å£ä¸­æ–­å‡½æ•°ç”¨äºæ¥æ”¶ä»openmvæ¥å—åˆ°çš„æ•°æ® 
 {
 	if (USART_GetITStatus(USART1, USART_IT_RXNE) == SET)
 	{
 		
-		Serial_RxData= USART_ReceiveData(USART1);//½ÓÊÜÊı¾İÎª´®¿Ú1 
-		openmv_receive(Serial_RxData);//½ÓÊÜ·¢¹ıÀ´µÄÊı¾İ°ü 
-		Serial_RxFlag = 1;//±êÖ¾Î»ÖÃ1 
-		USART_ClearITPendingBit(USART1, USART_IT_RXNE);//Çå³ı±êÖ¾ 
+		Serial_RxData= USART_ReceiveData(USART1);//æ¥å—æ•°æ®ä¸ºä¸²å£1 
+		openmv_receive(Serial_RxData);//æ¥å—å‘è¿‡æ¥çš„æ•°æ®åŒ… 
+		Serial_RxFlag = 1;//æ ‡å¿—ä½ç½®1 
+		USART_ClearITPendingBit(USART1, USART_IT_RXNE);//æ¸…é™¤æ ‡å¿— 
 	}
 } 
 

@@ -12,11 +12,7 @@
                 "_UNICODE",
                 "USE_HAL_DRIVER",
                 "STM32F103xB"
-            ],
-            "compilerPath": "D:/MINGW/bin/g++.exe",
-            "cStandard": "c17",
-            "cppStandard": "gnu++17",
-            "intelliSenseMode": "windows-gcc-x64"
+            ]
         }
     ],
     "version": 4
