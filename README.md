@@ -32,3 +32,6 @@ OPENMV使用串口3与单片机通信，因此要将发送口接到单片机接�
 |PA9|P5|
 |PA10|P4|
 |GND|GND|
+
+
+[def]: README/JAG25-370-2.png
