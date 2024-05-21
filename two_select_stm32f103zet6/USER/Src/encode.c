@@ -1,4 +1,5 @@
 #include "encode.h"
+#include <math.h>
 /**************************************************************************
 Function: Read encoder count per unit time
 Input   : TIMX：Timer
@@ -27,7 +28,7 @@ int Read_Encoder(uint8_t TIMX)
 float Moto_Speed(int encoder_cnt,uint16_t ppr,uint16_t ratio,uint16_t cnt_time)
 {
     encoder_cnt = abs(encoder_cnt);  
-    return (encoder_cnt/4/ppr/ratio)*(1000/cnt_time)*60;    /* 4倍频 */   
+    return (encoder_cnt/4/ppr/ratio)*(1000/cnt_time*60);    /* 4倍频 */   
 }
 
 /**************************************************************************

@@ -24,10 +24,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "find_trace_GRAY.h"
+#include "simple_motor_example.h"
 #include "OLED.h"
 #include "openmv.h"
 #include "encode.h"
+#include "pid.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,8 +50,11 @@
 /* USER CODE BEGIN PV */
 extern float theta_err,rho_err;
 uint8_t cmd;
-int Target_Velocity[2]={0},Reality_Velocity[2]={0};   
-int Target_Position[2]={0},Reality_Position[2]={0};   
+uint8_t speed;
+int Target_Velocity_L,Target_Velocity_R
+    ,Reality_Velocity_L,Reality_Velocity_R;   
+int Target_Position_L,Target_Position_R
+    ,Reality_Position_L,Reality_Position_R;     
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -107,27 +111,37 @@ int main(void)
   MX_TIM5_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+	OLED_Init();
 	HAL_UART_Receive_IT(&huart1,(void *)&cmd, 1); 
 	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);//redx
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);//redy
+	
+	
+	PID_Init(0.15,0.001,0.32,1.1,0.09,0.25);
+	Moto_Stop();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		Target_Velocity[0]=Rpm_Encoder_Cnt(0.3,500,30,10);  
-		Target_Velocity[1]=Rpm_Encoder_Cnt(0.3,500,30,10); 
-    Target_Position[0]=Num_Encoder_Cnt(1,500,30);  
-		Target_Position[1]=Num_Encoder_Cnt(1,500,30);
 
-//		for(i=0;i<=90;i+=5)
-//		{
-//			control_x(i);
-//		control_y(i);	
-//			Delay_ms(1000);	
-//		}
+//	set_motor(0,1000);
 		
+		Target_Velocity_L=Rpm_Encoder_Cnt(0,500,30,100);  
+		Target_Velocity_R=Rpm_Encoder_Cnt(0,500,30,100); 
+//		speed = Moto_Speed(Reality_Velocity[1],500,30,100);
+//		OLED_ShowNum(2,1,theta_err,6);
+//		OLED_ShowNum(1,1,rho_err,6);
+//		
+		Target_Position_L=Num_Encoder_Cnt(1,500,30);  
+		Target_Position_R=Num_Encoder_Cnt(1,500,30);
+		OLED_ShowNum(3,1,Target_Position_R,6);
+		
+		OLED_ShowNum(4,1,Reality_Position_R,6);
+		OLED_ShowNum(4,8,Reality_Velocity_R,6);
+//		Data_send(Target_Position_R,Reality_Position[1],Target_Velocity[1],Reality_Velocity[1 ]);
+		HAL_Delay(5);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -188,11 +202,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	HAL_UART_Receive_IT(&huart1,(void *)&cmd, 1);   //�ٿ��������ж�
 }
 
-//void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-//{
-//	if(GPIO_Pin == GPIO_PIN_13)
-//	base1();
-//}
+
+
 /* USER CODE END 4 */
 
 /**

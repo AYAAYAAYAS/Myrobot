@@ -23,6 +23,7 @@
 "2023e\system_stm32f1xx.o"
 "2023e\openmv.o"
 "2023e\pid.o"
+"2023e\ano.o"
 "2023e\encode.o"
 "2023e\find_trace_gray.o"
 "2023e\oled_1.o"
