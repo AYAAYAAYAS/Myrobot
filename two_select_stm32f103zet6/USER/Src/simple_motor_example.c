@@ -1,5 +1,5 @@
 /*
-¼¸¸ö¼òÒ×µÄÑ­¼£Ğ¡³µĞĞ×ßº¯Êı
+å‡ ä¸ªç®€æ˜“çš„å¾ªè¿¹å°è½¦è¡Œèµ°å‡½æ•°
 */
 
 #include "simple_motor_example.h"
@@ -10,24 +10,24 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     static int Moto_L = 0 , Moto_R = 0; 
     if (htim->Instance == TIM2)
     {
-        Reality_Velocity[0] = Read_Encoder(4);                     /* »ñÈ¡Êµ¼ÊÂö³åÊı--×óÂÖ */  
-				Reality_Velocity[1] = Read_Encoder(5);										/* »ñÈ¡Êµ¼ÊÂö³åÊı--ÓÒÂÖ */ 
+        Reality_Velocity[0] = Read_Encoder(4);                     /* è·å–å®é™…è„‰å†²æ•°--å·¦è½® */  
+				Reality_Velocity[1] = Read_Encoder(5);										/* è·å–å®é™…è„‰å†²æ•°--å³è½® */ 
 			
-        Reality_Position[0] += Reality_Velocity[0];                   /* Êµ¼ÊÎ»ÖÃÂö³åÊı */
+        Reality_Position[0] += Reality_Velocity[0];                   /* å®é™…ä½ç½®è„‰å†²æ•° */
         
-        Moto_L = Position_PID(Reality_Position[0],Target_Position[0]);  /* Î»ÖÃÊ½Î»ÖÃ¿ØÖÆ */        
-        Moto_L = limit(Moto_L,Target_Velocity[0]);                    /* Î»ÖÃ»·Êä³öÏŞ·ù */
+        Moto_L = Position_PID(Reality_Position[0],Target_Position[0]);  /* ä½ç½®å¼ä½ç½®æ§åˆ¶ */        
+        Moto_L = limit(Moto_L,Target_Velocity[0]);                    /* ä½ç½®ç¯è¾“å‡ºé™å¹… */
         
-        Moto_L = Incremental_PID(Reality_Velocity[0],Moto_L);      /* ÔöÁ¿Ê½ËÙ¶È¿ØÖÆ */
+        Moto_L = Incremental_PID(Reality_Velocity[0],Moto_L);      /* å¢é‡å¼é€Ÿåº¦æ§åˆ¶ */
 			
 			
-        Reality_Position[1] += Reality_Velocity[1];                   /* Êµ¼ÊÎ»ÖÃÂö³åÊı */
+        Reality_Position[1] += Reality_Velocity[1];                   /* å®é™…ä½ç½®è„‰å†²æ•° */
         
-        Moto_R = Position_PID(Reality_Position[1],Target_Position[1]);  /* Î»ÖÃÊ½Î»ÖÃ¿ØÖÆ */        
-        Moto_R = limit(Moto_L,Target_Velocity[1]);                    /* Î»ÖÃ»·Êä³öÏŞ·ù */
+        Moto_R = Position_PID(Reality_Position[1],Target_Position[1]);  /* ä½ç½®å¼ä½ç½®æ§åˆ¶ */        
+        Moto_R = limit(Moto_L,Target_Velocity[1]);                    /* ä½ç½®ç¯è¾“å‡ºé™å¹… */
         
-        Moto_R = Incremental_PID(Reality_Velocity[1],Moto_R);      /* ÔöÁ¿Ê½ËÙ¶È¿ØÖÆ */
-        set_motor(Moto_L,Moto_R);                                      /* ¸³Öµ */
+        Moto_R = Incremental_PID(Reality_Velocity[1],Moto_R);      /* å¢é‡å¼é€Ÿåº¦æ§åˆ¶ */
+        set_motor(Moto_L,Moto_R);                                      /* èµ‹å€¼ */
     }
 }
 int limit(int data,int max)
@@ -40,7 +40,7 @@ int limit(int data,int max)
 
 void set_motor(int motor1,int motor2)
 {
-	//¿ØÖÆµç»úÕı·´×ª
+	//æ§åˆ¶ç”µæœºæ­£åè½¬
 	if(motor1>0)
 	{
 		IN1(1);
@@ -65,7 +65,7 @@ void set_motor(int motor1,int motor2)
 		  IN4(1);
 		}	
 		
-//ÏŞ·ù
+//é™å¹…
 	if(motor1)
 	{
 		motor1=abs(motor1)+dead_veltage;

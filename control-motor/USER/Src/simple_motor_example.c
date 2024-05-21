@@ -1,10 +1,10 @@
 /*
-¼¸¸ö¼òÒ×µÄÑ­¼£Ğ¡³µĞĞ×ßº¯Êı
+å‡ ä¸ªç®€æ˜“çš„å¾ªè¿¹å°è½¦è¡Œèµ°å‡½æ•°
 */
 
 #include "simple_motor_example.h"
 
-//¶¨ÒåÊ¹ÄÜÍ¨µÀA,B
+//å®šä¹‰ä½¿èƒ½é€šé“A,B
 void ENA(int x){
     if(x>500){
         x=500;
@@ -19,8 +19,8 @@ void ENB(int x){
 }
 
 
-//¶¨Òåµç»úµÄ×ªÏò
-//Ç°½ø
+//å®šä¹‰ç”µæœºçš„è½¬å‘
+//å‰è¿›
 void forward(void){
     
     IN1(1);
@@ -31,7 +31,7 @@ void forward(void){
     ENB(300);
 }
 
-//×ó×ª
+//å·¦è½¬
 void turnleft(void){
     IN1(1);
     IN2(0);
@@ -41,7 +41,7 @@ void turnleft(void){
     ENB(0);
 }
 
-//ÓÒ×ª
+//å³è½¬
 
 void turnright(void){
     IN1(0);
@@ -51,7 +51,7 @@ void turnright(void){
     ENA(0);
     ENB(400);
 }
-//Í£Ö¹
+//åœæ­¢
 void stop(void){
     IN1(1);
     IN2(1);
