@@ -8,9 +8,8 @@
 #define IN2(x)	do{x?HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,SET):HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,RESET);}while(0);
 #define IN3(x)  do{x?HAL_GPIO_WritePin(GPIOB,GPIO_PIN_13,SET):HAL_GPIO_WritePin(GPIOB,GPIO_PIN_13,RESET);}while(0);
 #define IN4(x)	do{x?HAL_GPIO_WritePin(GPIOB,GPIO_PIN_12,SET):HAL_GPIO_WritePin(GPIOB,GPIO_PIN_12,RESET);}while(0);
-
-#define dead_veltage 2070 
-#define MAX 3550
+ 
+#define MAX 100
 #define PWM_1 TIM3->CCR1 
 #define PWM_2	TIM3->CCR2
 

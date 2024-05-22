@@ -51,8 +51,8 @@ void Data_send(int32_t _a,int32_t _b,int32_t _c,int32_t _d)
     
     for( i = 0 ; i < cnt; i++) 
 	{
-        while((USART1->SR&0X40)==0);  
-        USART1->DR = Data_Buff[i]; 
+        while((USART2->SR&0X40)==0);  
+        USART2->DR = Data_Buff[i]; 
 	}	
 }
 
@@ -87,8 +87,8 @@ void Ano_SentPar(uint16_t id,int32_t data)
     
     for( i = 0 ; i < cnt; i++) 
 	{
-        while((USART1->SR&0X40)==0);  
-        USART1->DR = Data_Sent[i]; 
+        while((USART2->SR&0X40)==0);  
+        USART2->DR = Data_Sent[i]; 
 	}   
 }
 
@@ -118,8 +118,8 @@ void Ano_SentCheck(uint8_t id,uint8_t _sc,uint8_t _ac)  /* –£—È÷° */
     
     for( i = 0 ; i < cnt; i++) 
 	{
-        while((USART1->SR&0X40)==0);  
-        USART1->DR = Data_Check[i]; 
+        while((USART2->SR&0X40)==0);  
+        USART2->DR = Data_Check[i]; 
 	}    
 }
 

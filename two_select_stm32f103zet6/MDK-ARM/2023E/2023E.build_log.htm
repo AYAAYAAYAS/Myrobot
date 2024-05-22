@@ -16,101 +16,25 @@ Linker/Locator:  ArmLink.exe V5.06 update 5 (build 528)
 Library Manager: ArmAr.exe V5.06 update 5 (build 528)
 Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
 CPU DLL:         SARMCM3.DLL V5.24.1
-Dialog DLL:      DARMSTM.DLL V1.68.0.0
+Dialog DLL:      DCM.DLL V1.16.0.0
 Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
-Dialog DLL:      TARMSTM.DLL V1.66.0.0
+Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 F:\repositories\Myrobot\two_select_stm32f103zet6\MDK-ARM\2023E.uvprojx
-Project File Date:  05/21/2024
+Project File Date:  05/22/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'F:\keil 5\ARM\ARMCC\Bin'
 Build target '2023E'
-compiling simple_motor_example.c...
-..\USER\Src\simple_motor_example.c(12): warning:  #223-D: function "Read_Encoder" declared implicitly
-          Reality_Velocity_L = Read_Encoder(5);                     /* 获取实际脉冲�?--左轮 */  
-..\USER\Src\simple_motor_example.c(42): warning:  #188-D: enumerated type mixed with another type
-  		
-N1(1);
-..\USER\Src\simple_motor_example.c(42): warning:  #188-D: enumerated type mixed with another type
-  		
-N1(1);
-..\USER\Src\simple_motor_example.c(43): warning:  #188-D: enumerated type mixed with another type
-  		
-N2(0);
-..\USER\Src\simple_motor_example.c(43): warning:  #188-D: enumerated type mixed with another type
-  		
-N2(0);
-..\USER\Src\simple_motor_example.c(47): warning:  #188-D: enumerated type mixed with another type
-  		
-N1(0);
-..\USER\Src\simple_motor_example.c(47): warning:  #188-D: enumerated type mixed with another type
-  		
-N1(0);
-..\USER\Src\simple_motor_example.c(48): warning:  #188-D: enumerated type mixed with another type
-  		
-N2(1);
-..\USER\Src\simple_motor_example.c(48): warning:  #188-D: enumerated type mixed with another type
-  		
-N2(1);
-..\USER\Src\simple_motor_example.c(55): warning:  #188-D: enumerated type mixed with another type
-  		
-N3(1);
-..\USER\Src\simple_motor_example.c(55): warning:  #188-D: enumerated type mixed with another type
-  		
-N3(1);
-..\USER\Src\simple_motor_example.c(56): warning:  #188-D: enumerated type mixed with another type
-  		
-N4(0);
-..\USER\Src\simple_motor_example.c(56): warning:  #188-D: enumerated type mixed with another type
-  		
-N4(0);
-..\USER\Src\simple_motor_example.c(60): warning:  #188-D: enumerated type mixed with another type
-  			
-N3(0);
-..\USER\Src\simple_motor_example.c(60): warning:  #188-D: enumerated type mixed with another type
-  			
-N3(0);
-..\USER\Src\simple_motor_example.c(61): warning:  #188-D: enumerated type mixed with another type
-  		  
-N4(1);
-..\USER\Src\simple_motor_example.c(61): warning:  #188-D: enumerated type mixed with another type
-  		  
-N4(1);
-..\USER\Src\simple_motor_example.c(67): warning:  #223-D: function "abs" declared implicitly
-  		motor1=abs(motor1)+dead_veltage;
-..\USER\Src\simple_motor_example.c(78): warning:  #223-D: function "abs" declared implicitly
-  		motor2=abs(motor2)+dead_veltage;
-..\USER\Src\simple_motor_example.c(89): warning:  #188-D: enumerated type mixed with another type
-      
-N1(0);
-..\USER\Src\simple_motor_example.c(89): warning:  #188-D: enumerated type mixed with another type
-      
-N1(0);
-..\USER\Src\simple_motor_example.c(90): warning:  #188-D: enumerated type mixed with another type
-      
-N2(0);
-..\USER\Src\simple_motor_example.c(90): warning:  #188-D: enumerated type mixed with another type
-      
-N2(0);
-..\USER\Src\simple_motor_example.c(91): warning:  #188-D: enumerated type mixed with another type
-      
-N3(0);
-..\USER\Src\simple_motor_example.c(91): warning:  #188-D: enumerated type mixed with another type
-      
-N3(0);
-..\USER\Src\simple_motor_example.c(92): warning:  #188-D: enumerated type mixed with another type
-      
-N4(0);
-..\USER\Src\simple_motor_example.c(92): warning:  #188-D: enumerated type mixed with another type
-      
-N4(0);
-..\USER\Src\simple_motor_example.c: 27 warnings, 0 errors
+compiling main.c...
+../Core/Src/main.c(212): warning:  #177-D: variable "Moto_R"  was declared but never referenced
+      static int Moto_L = 0 , Moto_R = 0; 
+../Core/Src/main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=11870 RO-data=1898 RW-data=80 ZI-data=2144  
+Program Size: Code=11246 RO-data=1898 RW-data=144 ZI-data=2144  
 FromELF: creating hex file...
-"2023E\2023E.axf" - 0 Error(s), 27 Warning(s).
+"2023E\2023E.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 

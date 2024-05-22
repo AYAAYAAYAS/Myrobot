@@ -37,8 +37,8 @@ int Position_PID(float Reality,float Target)
 	P_pid.Intergal_Bias+=P_pid.Bias;
 
 	// 限制积分
-	if(P_pid.Intergal_Bias>5000)P_pid.Intergal_Bias=5000;
-	if(P_pid.Intergal_Bias<-5000)P_pid.Intergal_Bias=-5000;
+	if(P_pid.Intergal_Bias>3000)P_pid.Intergal_Bias=3000;
+	if(P_pid.Intergal_Bias<-3000)P_pid.Intergal_Bias=-3000;
 
 	Pwm = (P_pid.Position_kp * P_pid.Bias) 
 		+ (P_pid.Position_ki * P_pid.Intergal_Bias) 

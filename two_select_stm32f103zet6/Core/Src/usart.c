@@ -21,6 +21,25 @@
 #include "usart.h"
 
 /* USER CODE BEGIN 0 */
+#include <stdio.h>
+uint8_t data_buff[1];
+
+ #ifdef __GNUC__
+     #define PUTCHAR_PROTOTYPE int _io_putchar(int ch)
+ #else
+     #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+ #endif /* __GNUC__*/
+ 
+ /******************************************************************
+     *@brief  Retargets the C library printf  function to the USART.
+     *@param  None
+     *@retval None
+ ******************************************************************/
+ PUTCHAR_PROTOTYPE
+ {
+     HAL_UART_Transmit(&huart2, (uint8_t *)&ch,1,0xFFFF);
+     return ch;
+ }
 
 /* USER CODE END 0 */
 
@@ -81,7 +100,7 @@ void MX_USART2_UART_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN USART2_Init 2 */
-
+	HAL_UART_Receive_IT(&huart1,(uint8_t *)data_buff, 1); 
   /* USER CODE END USART2_Init 2 */
 
 }

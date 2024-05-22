@@ -1,5 +1,16 @@
 #include "encode.h"
 #include <math.h>
+int myabs(int x)
+{
+	if(x<0)
+	{
+		return -x;
+	}
+	else
+	{
+		return x;
+	}
+}
 /**************************************************************************
 Function: Read encoder count per unit time
 Input   : TIMX：Timer
@@ -25,10 +36,10 @@ int Read_Encoder(uint8_t TIMX)
 输    入: encoder_cnt：脉冲数；ppr：码盘数；ratio：减速比；cnt_time：计数时间(ms)
 返回  值: 车轮转速 rpm
 **************************************************************************/
-float Moto_Speed(int encoder_cnt,uint16_t ppr,uint16_t ratio,uint16_t cnt_time)
+float Moto_Speed(int encoder_cnt,uint16_t ppr,uint16_t ratio)
 {
     encoder_cnt = abs(encoder_cnt);  
-    return (encoder_cnt/4/ppr/ratio)*(1000/cnt_time*60);    /* 4倍频 */   
+    return encoder_cnt*100/4/ppr/ratio;    /* 4倍频 */   
 }
 
 /**************************************************************************
