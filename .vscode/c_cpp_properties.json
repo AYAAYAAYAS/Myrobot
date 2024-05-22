@@ -4,7 +4,8 @@
             "name": "control-motor",
             "includePath": [
                 "control-motor/**",
-                "${workspaceFolder}/control-motor/**"
+                "${workspaceFolder}/control-motor/**",
+                "two_select_stm32f103zet6/**"
             ],
             "defines": [
                 "_DEBUG",
