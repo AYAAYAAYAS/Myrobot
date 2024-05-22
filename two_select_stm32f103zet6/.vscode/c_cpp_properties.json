@@ -1,17 +1,16 @@
 {
     "configurations": [
         {
-            "name": "control-motor",
+            "name": "two_select_stm32f103zet6",
             "includePath": [
-                "control-motor/**",
-                "${workspaceFolder}/control-motor/**"
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE",
                 "USE_HAL_DRIVER",
-                "STM32F103xB"
+                "STM32F103xE"
             ]
         }
     ],

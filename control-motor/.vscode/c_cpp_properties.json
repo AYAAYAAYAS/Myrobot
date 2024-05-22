@@ -3,8 +3,7 @@
         {
             "name": "control-motor",
             "includePath": [
-                "control-motor/**",
-                "${workspaceFolder}/control-motor/**"
+                "${workspaceFolder}/"
             ],
             "defines": [
                 "_DEBUG",
