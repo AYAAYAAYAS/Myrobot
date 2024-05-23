@@ -24,12 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "simple_motor_example.h"
-#include "OLED.h"
-#include "openmv.h"
-#include "encode.h"
-#include "pid.h"
-#include "ano.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -50,8 +45,10 @@
 
 /* USER CODE BEGIN PV */
 extern float theta_err,rho_err;
+extern uint8_t buffer_1_i,buffer_1_f,buffer_2_i,buffer_2_f,buffer_3;
 uint8_t cmd;
-uint8_t speed;
+uint8_t TL=4,TR=4;
+uint8_t speed_L,speed_R;
 int Target_Velocity_L,Target_Velocity_R
     ,Reality_Velocity_L,Reality_Velocity_R;   
 int Target_Position_L,Target_Position_R
@@ -118,7 +115,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);//redy
 	
 	
-	PID_Init(0.15,0.001,0.32,1.1,0.09,0.25);
+	PID_Init(0.15,0.001,0.32,4.5,0.09,0.25);
 	Moto_Stop();
   /* USER CODE END 2 */
 
@@ -126,24 +123,24 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+	
 //	set_motor(0,1000);
 		
-//		Target_Velocity_L=Rpm_Encoder_Cnt(0,11,9.6,100);  
-//		Target_Velocity_R=Rpm_Encoder_Cnt(0,11,9.6,100); 
+		Target_Velocity_L=Rpm_Encoder_Cnt(3,11,9.6,100);  
+		Target_Velocity_R=Rpm_Encoder_Cnt(3,11,9.6,100); 
 			
 //		speed = Moto_Speed(Reality_Velocity[1],500,30,100);
-//		OLED_ShowNum(2,1,theta_err,6);
-//		OLED_ShowNum(1,1,rho_err,6);
+		OLED_ShowNum(1,1,buffer_1_i,4);
+		OLED_ShowNum(1,6,rho_err,4);
 //	
 //		printf("串口打印测试\n");
 //		HAL_Delay(1000);
 		Target_Position_L=Num_Encoder_Cnt(2,11,9.6);  
-		Target_Position_R=Num_Encoder_Cnt(1,11,9.6);
-		OLED_ShowNum(3,1,speed,6);
+		Target_Position_R=Num_Encoder_Cnt(2,11,9.6);
+		OLED_ShowNum(3,1,speed_L,6);
 		
-		OLED_ShowNum(4,1,Reality_Position_L,6);
-		OLED_ShowNum(4,8,Reality_Velocity_L,6);
+		OLED_ShowNum(4,1,Reality_Position_R,6);
+		OLED_ShowNum(4,8,Reality_Velocity_R,6);
 		Data_send(Target_Position_L,Reality_Position_L,0,0);
 		HAL_Delay(5);
     /* USER CODE END WHILE */
@@ -213,20 +210,24 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     if (htim->Instance == TIM2)
     {
 //				/*速度位置环控制*/
-//        Reality_Velocity_L = Read_Encoder(5);                     /* 获取实际脉冲数--左轮 */  
-//				speed=Moto_Speed(Reality_Velocity_L,11,9.6);
-//				Moto_L = Position_PID(speed,4);  /* 位置式位置控制 */        
-//        Moto_L = limit(Moto_L,4);                    /* 位置环输出限幅 */
-//				set_motor(Moto_L ,0);   
-				
-				/*转数位置环控制*/
-				Reality_Velocity_L=Read_Encoder(5);
-				Reality_Position_L+=Reality_Velocity_L;
-				Moto_L = Position_PID(Reality_Position_L,Target_Position_L);  
-				Moto_L = limit(Moto_L,Target_Position_L);
-				set_motor(Moto_L,0);  
+        Reality_Velocity_L = Read_Encoder(5);  /* 获取实际脉冲数--左轮 */ 
+				Reality_Velocity_R = Read_Encoder(4);		 /* 获取实际脉冲数--右轮 */ 
+				speed_L=Moto_Speed(Reality_Velocity_L,11,9.6);
+				speed_R=Moto_Speed(Reality_Velocity_R,11,9.6);
+				Moto_L = Position_PID(speed_L,TR);  /* 位置式位置控制 */  
+				Moto_R = Position_PID(speed_R,TR);
+        Moto_L = limit(Moto_L,TR);                    /* 位置环输出限幅 */
+				Moto_R = limit(Moto_R,TR); 
+				set_motor(Moto_L ,Moto_R );   
+//				
 			
-//				Reality_Velocity_R = Read_Encoder(4);										/* 获取实际脉冲数--右轮 */ 
+//				/*转数位置环控制*/
+//				Reality_Velocity_L=Read_Encoder(5);
+//				Reality_Position_L+=Reality_Velocity_L;
+//				Moto_L = Position_PID(Reality_Position_L,Target_Position_L);  
+//				Moto_L = limit(Moto_L,Target_Position_L);
+//				set_motor(Moto_L,0);  
+
 //			
 //        Reality_Position_L += Reality_Velocity_L;                   /* 实际位置脉冲数 */
 //        Reality_Position_R += Reality_Velocity_R;  

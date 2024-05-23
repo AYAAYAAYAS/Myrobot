@@ -61,10 +61,10 @@ while(True):
  # 将偏离值转换成偏离角度.
     deflection_angle = math.degrees(deflection_volue)
 
-#    OUT_DATA =bytearray([0x2C,0x12,buffer_1, buffer_2,  buffer_3, 0x5B ])#发送数据包
-#    uart.write(OUT_DATA)
+    OUT_DATA =bytearray([0x2C,0x12,(int)(center_pos*100),(int)(center_pos*100), 0x5B ])#发送数据包
+    uart.write(OUT_DATA)
     time.sleep_ms(1000)
-    Sending_data((int)(center_pos*100),(int)(deflection_angle*10))
+#    Sending_data((int)(center_pos*100),(int)(center_pos*100))
 
  # 计算偏离角度后可以控制机器人进行调整.
     print(data)

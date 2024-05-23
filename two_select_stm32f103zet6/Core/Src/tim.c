@@ -167,7 +167,7 @@ void MX_TIM4_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM4_Init 2 */
-
+	HAL_TIM_Encoder_Start(&htim4,TIM_CHANNEL_ALL);
   /* USER CODE END TIM4_Init 2 */
 
 }

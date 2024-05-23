@@ -1,17 +1,31 @@
-#include "find_trace_GRAY.h"
-#include "simple_motor_example.h"
-#define left_sign HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_0)
-#define right_sign HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_1)
-
-//void trace_red_2(void){
-//		int sign;
-//    if(left_sign == 1 &&  right_sign == 1)sign=1;
-//		if(left_sign == 0 &&  right_sign == 1)sign=2;
-//		if(left_sign == 1 &&  right_sign == 0)sign=3;
-//	
-//	switch(sign){
-//		case 1:forward();break;
-//		case 2:turnleft();break;
-//		case 3:turnright();break;
-//	}		
-//}
+#include "main.h"
+extern float theta_err,rho_err;
+extern uint8_t buffer_1_i,buffer_1_f,buffer_2_i,buffer_2_f,buffer_3;
+int Angle_err; 
+int A_TH=30; //角度阈值
+extern uint8_t TL,TR;
+extern uint8_t speed_L,speed_R;
+int Motor_L ,Motor_R;
+void camera_trace()
+{
+	Angle_err=rho_err;
+	if(Angle_err>A_TH)
+	{
+	
+		if(Angle_err>5)
+		{
+			set_motor(0,50);
+		}
+		if(Angle_err<-5)
+		{
+			set_motor(50,0);
+		}
+	}
+	
+	if(Angle_err<A_TH)
+	{
+				Motor_L = Position_PID(speed_L,TR);  /* 位置式位置控制 */  
+				Motor_R = Position_PID(speed_R,TR); 
+				set_motor(Motor_L ,Motor_R );
+	}
+}
