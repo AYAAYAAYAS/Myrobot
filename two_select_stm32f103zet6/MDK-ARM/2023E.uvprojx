@@ -528,6 +528,21 @@
               <FileType>1</FileType>
               <FilePath>..\Bsp\Src\ano.c</FilePath>
             </File>
+            <File>
+              <FileName>MPU6050_I2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\Src\MPU6050_I2C.c</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\Src\MPU6050.c</FilePath>
+            </File>
+            <File>
+              <FileName>Delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\Src\Delay.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

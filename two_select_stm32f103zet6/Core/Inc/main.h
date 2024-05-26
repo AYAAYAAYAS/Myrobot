@@ -37,6 +37,8 @@ extern "C" {
 #include "encode.h"
 #include "pid.h"
 #include "ano.h"
+#include "MPU6050.h"
+#include "Delay.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

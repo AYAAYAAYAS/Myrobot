@@ -46,6 +46,9 @@
 /* USER CODE BEGIN PV */
 extern float theta_err,rho_err;
 extern uint8_t buffer_1_i,buffer_1_f,buffer_2_i,buffer_2_f,buffer_3;
+
+int16_t AX,AY,AZ,GX,GY,GZ;
+uint8_t ID;
 uint8_t cmd;
 uint8_t TL=4,TR=4;
 uint8_t speed_L,speed_R;
@@ -110,6 +113,7 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 	OLED_Init();
+	MPU6050_Init();
 	HAL_UART_Receive_IT(&huart1,(void *)&cmd, 1); 
 	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);//redx
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);//redy
@@ -117,12 +121,22 @@ int main(void)
 	
 	PID_Init(0.15,0.001,0.32,4.5,0.09,0.25);
 	Moto_Stop();
+	
+	ID = MPU6050_GetID();
+	OLED_ShowHexNum(1, 4, ID, 2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		MPU6050_GetData(&AX, &AY, &AZ, &GX, &GY, &GZ);
+		OLED_ShowSignedNum(2, 1, AX, 5);
+		OLED_ShowSignedNum(3, 1, AY, 5);
+		OLED_ShowSignedNum(4, 1, AZ, 5);
+		OLED_ShowSignedNum(2, 8, GX, 5);
+		OLED_ShowSignedNum(3, 8, GY, 5);
+		OLED_ShowSignedNum(4, 8, GZ, 5);
 	
 //	set_motor(0,1000);
 		
@@ -130,19 +144,18 @@ int main(void)
 		Target_Velocity_R=Rpm_Encoder_Cnt(3,11,9.6,100); 
 			
 //		speed = Moto_Speed(Reality_Velocity[1],500,30,100);
-		OLED_ShowNum(1,1,buffer_1_i,4);
-		OLED_ShowNum(1,6,rho_err,4);
+//		OLED_ShowNum(1,1,buffer_1_i,4);
+//		OLED_ShowNum(1,6,rho_err,4);
 //	
 //		printf("串口打印测试\n");
 //		HAL_Delay(1000);
-		Target_Position_L=Num_Encoder_Cnt(2,11,9.6);  
-		Target_Position_R=Num_Encoder_Cnt(2,11,9.6);
-		OLED_ShowNum(3,1,speed_L,6);
-		
-		OLED_ShowNum(4,1,Reality_Position_R,6);
-		OLED_ShowNum(4,8,Reality_Velocity_R,6);
-		Data_send(Target_Position_L,Reality_Position_L,0,0);
-		HAL_Delay(5);
+//		Target_Position_L=Num_Encoder_Cnt(2,11,9.6);  
+//		Target_Position_R=Num_Encoder_Cnt(2,11,9.6);
+//		OLED_ShowNum(3,1,speed_L,6);
+//		
+//		OLED_ShowNum(4,1,Reality_Position_R,6);
+//		OLED_ShowNum(4,8,Reality_Velocity_R,6);
+//		Data_send(Target_Position_L,Reality_Position_L,0,0);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -209,19 +222,19 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     static int Moto_L = 0 , Moto_R = 0; 
     if (htim->Instance == TIM2)
     {
-//				/*速度位置环控制*/
-        Reality_Velocity_L = Read_Encoder(5);  /* 获取实际脉冲数--左轮 */ 
-				Reality_Velocity_R = Read_Encoder(4);		 /* 获取实际脉冲数--右轮 */ 
+//				/*速度位置环控�?*/
+        Reality_Velocity_L = Read_Encoder(5);  /* 获取实际脉冲�?--左轮 */ 
+				Reality_Velocity_R = Read_Encoder(4);		 /* 获取实际脉冲�?--右轮 */ 
 				speed_L=Moto_Speed(Reality_Velocity_L,11,9.6);
 				speed_R=Moto_Speed(Reality_Velocity_R,11,9.6);
-				Moto_L = Position_PID(speed_L,TR);  /* 位置式位置控制 */  
+				Moto_L = Position_PID(speed_L,TR);  /* 位置式位置控�? */  
 				Moto_R = Position_PID(speed_R,TR);
-        Moto_L = limit(Moto_L,TR);                    /* 位置环输出限幅 */
+        Moto_L = limit(Moto_L,TR);                    /* 位置环输出限�? */
 				Moto_R = limit(Moto_R,TR); 
 				set_motor(Moto_L ,Moto_R );   
 //				
 			
-//				/*转数位置环控制*/
+//				/*转数位置环控�?*/
 //				Reality_Velocity_L=Read_Encoder(5);
 //				Reality_Position_L+=Reality_Velocity_L;
 //				Moto_L = Position_PID(Reality_Position_L,Target_Position_L);  
@@ -229,18 +242,18 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 //				set_motor(Moto_L,0);  
 
 //			
-//        Reality_Position_L += Reality_Velocity_L;                   /* 实际位置脉冲数 */
+//        Reality_Position_L += Reality_Velocity_L;                   /* 实际位置脉冲�? */
 //        Reality_Position_R += Reality_Velocity_R;  
-//			/* 实际位置脉冲数 */
-//        Moto_L = Position_PID(Reality_Velocity_L,Target_Position_L);  /* 位置式位置控制 */        
-//        Moto_L = limit(Moto_L,Target_Velocity_L);                    /* 位置环输出限幅 */
+//			/* 实际位置脉冲�? */
+//        Moto_L = Position_PID(Reality_Velocity_L,Target_Position_L);  /* 位置式位置控�? */        
+//        Moto_L = limit(Moto_L,Target_Velocity_L);                    /* 位置环输出限�? */
 //      
-//        Moto_R = Position_PID(Reality_Position_R ,Target_Position_R);  /* 位置式位置控制 */        
-//        Moto_R = limit(Moto_L,Target_Velocity_R);                    /* 位置环输出限幅 */
-//        Moto_L = Incremental_PID(Reality_Velocity_L,Moto_L);      /* 增量式速度控制 */
+//        Moto_R = Position_PID(Reality_Position_R ,Target_Position_R);  /* 位置式位置控�? */        
+//        Moto_R = limit(Moto_L,Target_Velocity_R);                    /* 位置环输出限�? */
+//        Moto_L = Incremental_PID(Reality_Velocity_L,Moto_L);      /* 增量式�?�度控制 */
 //			
-//        Moto_R = Incremental_PID(Reality_Velocity_R,Moto_R);      /* 增量式速度控制 */
-//        set_motor(Moto_L,Moto_R);                                      /* 赋值 */
+//        Moto_R = Incremental_PID(Reality_Velocity_R,Moto_R);      /* 增量式�?�度控制 */
+//        set_motor(Moto_L,Moto_R);                                      /* 赋�?? */
     }
 }
 
