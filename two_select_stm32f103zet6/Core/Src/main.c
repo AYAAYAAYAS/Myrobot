@@ -24,12 +24,12 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <rtthread.h>
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -47,15 +47,16 @@
 extern float theta_err,rho_err;
 extern uint8_t buffer_1_i,buffer_1_f,buffer_2_i,buffer_2_f,buffer_3;
 
-int16_t AX,AY,AZ,GX,GY,GZ;
-uint8_t ID;
+
 uint8_t cmd;
 uint8_t TL=4,TR=4;
 uint8_t speed_L,speed_R;
 int Target_Velocity_L,Target_Velocity_R
     ,Reality_Velocity_L,Reality_Velocity_R;   
 int Target_Position_L,Target_Position_R
-    ,Reality_Position_L,Reality_Position_R;     
+    ,Reality_Position_L,Reality_Position_R; 
+
+int i;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -84,7 +85,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+	MX_RT_Thread_Init();
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -93,7 +94,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+	
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -104,44 +105,40 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_TIM3_Init();
-  MX_USART1_UART_Init();
-  MX_TIM2_Init();
-  MX_TIM4_Init();
-  MX_TIM5_Init();
-  MX_USART2_UART_Init();
+		MX_GPIO_Init();
+//  MX_TIM3_Init();
+//  MX_USART1_UART_Init();
+//  MX_TIM2_Init();
+//  MX_TIM4_Init();
+//  MX_TIM5_Init();
+//  MX_USART2_UART_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-	OLED_Init();
-	MPU6050_Init();
-	HAL_UART_Receive_IT(&huart1,(void *)&cmd, 1); 
-	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);//redx
-  HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);//redy
-	
-	
+		OLED_Init();
+		MPU6050_Init();
+//	HAL_UART_Receive_IT(&huart1,(void *)&cmd, 1); 	
+
 	PID_Init(0.15,0.001,0.32,4.5,0.09,0.25);
 	Moto_Stop();
-	
-	ID = MPU6050_GetID();
-	OLED_ShowHexNum(1, 4, ID, 2);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
-  {
-		MPU6050_GetData(&AX, &AY, &AZ, &GX, &GY, &GZ);
-		OLED_ShowSignedNum(2, 1, AX, 5);
-		OLED_ShowSignedNum(3, 1, AY, 5);
-		OLED_ShowSignedNum(4, 1, AZ, 5);
-		OLED_ShowSignedNum(2, 8, GX, 5);
-		OLED_ShowSignedNum(3, 8, GY, 5);
-		OLED_ShowSignedNum(4, 8, GZ, 5);
+  {	
+//		if(GX>0)
+//		{
+//			Servo_SetAngleX(GX);
+//		}
+	
+
+	
 	
 //	set_motor(0,1000);
 		
-		Target_Velocity_L=Rpm_Encoder_Cnt(3,11,9.6,100);  
-		Target_Velocity_R=Rpm_Encoder_Cnt(3,11,9.6,100); 
+//		Target_Velocity_L=Rpm_Encoder_Cnt(3,11,9.6,100);  
+//		Target_Velocity_R=Rpm_Encoder_Cnt(3,11,9.6,100); 
 			
 //		speed = Moto_Speed(Reality_Velocity[1],500,30,100);
 //		OLED_ShowNum(1,1,buffer_1_i,4);
@@ -205,12 +202,14 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
+
+
+
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	uint16_t Serial_RxData;
   if(huart->Instance==USART1){
-
-		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_SET);
 		Serial_RxData=cmd;	
 		openmv_receive(Serial_RxData);		
 	}	

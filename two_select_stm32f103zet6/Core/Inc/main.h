@@ -39,6 +39,8 @@ extern "C" {
 #include "ano.h"
 #include "MPU6050.h"
 #include "Delay.h"
+#include "Servo.h"	
+#include "APP_RTTHREAD.h"	
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
