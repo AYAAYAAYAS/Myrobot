@@ -2,7 +2,6 @@
 #define _FOC_H
 
 
-
 #define _2_SQRT3 1.15470053838
 #define _SQRT3 1.73205080757
 #define _1_SQRT3 0.57735026919
@@ -15,5 +14,20 @@
 #define _2PI 6.28318530718
 #define _3PI_2 4.71238898038
 #define _PI_6 0.52359877559
+
+typedef enum{
+    CW = 1,
+    CCW = -1,
+    UNKNOWN = 0
+}Direction;
+
+void setPwm(float Ua, float Ub, float Uc);
+float setTorque(float Uq,float angle_el);
+float _normalizeAngle(float angle);
+void FOC_Vbus(float power_supply);
+void FOC_alignSensor(int _PP,int _DIR);
+float _electricalAngle();
+float FOC_M0_Angle();
+
 
 #endif

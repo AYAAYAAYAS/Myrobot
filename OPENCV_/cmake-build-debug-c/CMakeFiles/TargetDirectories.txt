@@ -1,0 +1,3 @@
+F:/repositories/Myrobot/OPENCV_/cmake-build-debug-c/CMakeFiles/OPENCV_.dir
+F:/repositories/Myrobot/OPENCV_/cmake-build-debug-c/CMakeFiles/edit_cache.dir
+F:/repositories/Myrobot/OPENCV_/cmake-build-debug-c/CMakeFiles/rebuild_cache.dir
