@@ -21,4 +21,11 @@ void Moto_Stop(void);
 void set_motor(int motor1,int motor2);
 int limit(int data,int max);
 
+typedef struct 
+{
+	 short speed[2];
+	 short angel;
+	
+}com_data;
+
 #endif

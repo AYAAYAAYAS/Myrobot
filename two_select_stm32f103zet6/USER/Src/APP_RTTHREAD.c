@@ -7,29 +7,33 @@
 struct rt_thread MPU6050_thread;
 rt_uint8_t MPU6050_thread_stack[128];
 void MPU6050_task_entry(void *parameter);
-
+extern float theta_err,rho_err;
+extern uint8_t cmd;
 int16_t AX,AY,AZ,GX,GY,GZ;
 uint8_t ID; 
- 
+extern uint8_t buffer_1_i,buffer_1_f,buffer_2_i,buffer_2_f,buffer_3;
 
 
  
 //MPU6050任务
  void MPU6050_task_entry(void *parameter)
 {
-
+	OLED_Clear();
 	while(1)
 	{
-		
-		MPU6050_GetData(&AX, &AY, &AZ, &GX, &GY, &GZ);
-		OLED_ShowSignedNum(2, 1, AX, 5);
-		OLED_ShowSignedNum(3, 1, AY, 5);
-		OLED_ShowSignedNum(4, 1, AZ, 5);
-		OLED_ShowSignedNum(2, 8, GX, 5);
-		OLED_ShowSignedNum(3, 8, GY, 5);
-		OLED_ShowSignedNum(4, 8, GZ, 5);
-		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
-		rt_thread_mdelay(200);
+		OLED_ShowNum(1,1,buffer_1_i,3);
+		OLED_ShowNum(1,6,cmd,3);
+		OLED_ShowNum(2,1,buffer_2_i,3);
+		OLED_ShowNum(2,6,1,3);
+//		MPU6050_GetData(&AX, &AY, &AZ, &GX, &GY, &GZ);
+//		OLED_ShowSignedNum(2, 1, AX, 5);
+//		OLED_ShowSignedNum(3, 1, AY, 5);
+//		OLED_ShowSignedNum(4, 1, AZ, 5);
+//		OLED_ShowSignedNum(2, 8, GX, 5);
+//		OLED_ShowSignedNum(3, 8, GY, 5);
+//		OLED_ShowSignedNum(4, 8, GZ, 5);
+//		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
+		rt_thread_mdelay(5);
 	}
 }
 
@@ -44,8 +48,8 @@ void Servo_task_entry(void *parameter)
 
 	while(1)
 	{
-		ID = MPU6050_GetID();
-		OLED_ShowHexNum(1, 4, ID, 2);
+//		ID = MPU6050_GetID();
+//		OLED_ShowHexNum(1, 4, ID, 2);
 		Servo_SetAngleX(90);
 		Servo_SetAngleY(90);
 		rt_thread_mdelay(200);

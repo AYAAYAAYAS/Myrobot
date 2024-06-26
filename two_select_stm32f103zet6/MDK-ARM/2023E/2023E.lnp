@@ -21,6 +21,7 @@
 "2023e\stm32f1xx_hal_tim_ex.o"
 "2023e\stm32f1xx_hal_uart.o"
 "2023e\system_stm32f1xx.o"
+"2023e\comserial.o"
 "2023e\openmv.o"
 "2023e\pid.o"
 "2023e\ano.o"

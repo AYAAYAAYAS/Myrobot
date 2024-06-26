@@ -481,7 +481,7 @@ int __rt_ffs(int value);
 void *rt_memset(void *src, int c, rt_ubase_t n);
 void *rt_memcpy(void *dest, const void *src, rt_ubase_t n);
 
-rt_int32_t rt_strncmp(const char *cs, const char *ct, rt_ubase_t count);
+//rt_int32_t rt_strncmp(const char *cs, const char *ct, rt_ubase_t count);
 rt_int32_t rt_strcmp(const char *cs, const char *ct);
 rt_size_t rt_strlen(const char *src);
 rt_size_t rt_strnlen(const char *s, rt_ubase_t maxlen);
@@ -495,7 +495,7 @@ char *rt_strstr(const char *str1, const char *str2);
 rt_int32_t rt_sscanf(const char *buf, const char *fmt, ...);
 char *rt_strncpy(char *dest, const char *src, rt_ubase_t n);
 void *rt_memmove(void *dest, const void *src, rt_ubase_t n);
-rt_int32_t rt_memcmp(const void *cs, const void *ct, rt_ubase_t count);
+//rt_int32_t rt_memcmp(const void *cs, const void *ct, rt_ubase_t count);
 rt_int32_t rt_strcasecmp(const char *a, const char *b);
 
 void rt_show_version(void);

@@ -41,6 +41,7 @@ extern "C" {
 #include "Delay.h"
 #include "Servo.h"	
 #include "APP_RTTHREAD.h"	
+#include "comserial.h"
 #include <math.h>
 /* USER CODE END Includes */
 

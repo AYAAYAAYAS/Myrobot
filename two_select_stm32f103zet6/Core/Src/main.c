@@ -121,7 +121,7 @@ int main(void)
 
 	PID_Init(0.15,0.001,0.32,4.5,0.09,0.25);
 	Moto_Stop();
-
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -142,8 +142,7 @@ int main(void)
 //		Target_Velocity_R=Rpm_Encoder_Cnt(3,11,9.6,100); 
 			
 //		speed = Moto_Speed(Reality_Velocity[1],500,30,100);
-//		OLED_ShowNum(1,1,buffer_1_i,4);
-//		OLED_ShowNum(1,6,rho_err,4);
+
 //	
 //		printf("串口打印测试\n");
 //		HAL_Delay(1000);
@@ -206,13 +205,13 @@ void SystemClock_Config(void)
 
 
 
-
+//串口接收中断函数
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	uint16_t Serial_RxData;
   if(huart->Instance==USART1){
 		Serial_RxData=cmd;	
-		openmv_receive(Serial_RxData);		
+//		openmv_receive(Serial_RxData);		
 	}	
 	HAL_UART_Receive_IT(&huart1,(void *)&cmd, 1);  
 }

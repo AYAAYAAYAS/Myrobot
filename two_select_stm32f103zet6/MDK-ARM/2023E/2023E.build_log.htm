@@ -16,22 +16,29 @@ Linker/Locator:  ArmLink.exe V5.06 update 5 (build 528)
 Library Manager: ArmAr.exe V5.06 update 5 (build 528)
 Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
 CPU DLL:         SARMCM3.DLL V5.24.1
-Dialog DLL:      DARMSTM.DLL V1.68.0.0
+Dialog DLL:      DCM.DLL V1.16.0.0
 Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
-Dialog DLL:      TARMSTM.DLL V1.66.0.0
+Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 F:\repositories\Myrobot\two_select_stm32f103zet6\MDK-ARM\2023E.uvprojx
-Project File Date:  05/26/2024
+Project File Date:  06/12/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'F:\keil 5\ARM\ARMCC\Bin'
 Build target '2023E'
+compiling APP_RTTHREAD.c...
+..\USER\Src\APP_RTTHREAD.c(70): warning:  #1-D: last line of file ends without a newline
+  }
+..\USER\Src\APP_RTTHREAD.c: 1 warning, 0 errors
 compiling main.c...
+../Core/Src/main.c(211): warning:  #550-D: variable "Serial_RxData"  was set but never used
+  	uint16_t Serial_RxData;
+../Core/Src/main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=16658 RO-data=2210 RW-data=176 ZI-data=4560  
+Program Size: Code=17538 RO-data=2210 RW-data=168 ZI-data=4616  
 FromELF: creating hex file...
-"2023E\2023E.axf" - 0 Error(s), 0 Warning(s).
+"2023E\2023E.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -54,7 +61,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

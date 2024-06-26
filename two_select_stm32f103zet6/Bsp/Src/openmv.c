@@ -34,6 +34,10 @@ void openmv_receive(int16_t Com_Data)
 			RxState=3;
 			
 			buffer_1_i=RxBuffer[2];
+			buffer_1_f=RxBuffer[3];
+			buffer_2_i=RxBuffer[5];
+			buffer_2_f=RxBuffer[6];
+			
 			theta_err=buffer_1_i/10+buffer_1_i%10/10;
 			rho_err=RxBuffer[6];
 			
