@@ -9,9 +9,9 @@
 #define IN3(x)  do{x?HAL_GPIO_WritePin(GPIOB,GPIO_PIN_13,SET):HAL_GPIO_WritePin(GPIOB,GPIO_PIN_13,RESET);}while(0);
 #define IN4(x)	do{x?HAL_GPIO_WritePin(GPIOB,GPIO_PIN_12,SET):HAL_GPIO_WritePin(GPIOB,GPIO_PIN_12,RESET);}while(0);
  
-#define MAX 100
-#define PWM_1 TIM3->CCR1 
-#define PWM_2	TIM3->CCR2
+#define MAX 3500
+#define PWM_1 TIM1->CCR1 
+#define PWM_2	TIM1->CCR2                                                                      
 
 extern int Target_Velocity_L,Target_Velocity_R
 						,Reality_Velocity_L,Reality_Velocity_R;   

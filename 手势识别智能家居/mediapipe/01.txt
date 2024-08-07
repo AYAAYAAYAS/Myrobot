@@ -1,0 +1,8 @@
+Exception in thread Thread-1 (detect):
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+TypeError: __main__.detect() argument after * must be an iterable, not Queue
+

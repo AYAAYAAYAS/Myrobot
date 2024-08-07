@@ -304,10 +304,11 @@ ARM Macro Assembler    Page 5
               E000ED08 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=2023e\context_rvds.d -o2023e\context_rvds.o -I.\RTE\_2023E -I"F:\k
-eil 5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include" -I"F:\keil 5\ARM\PACK\Keil\STM32F
-1xx_DFP\2.2.0\Device\Include" --predefine="__UVISION_VERSION SETA 524" --predef
-ine="_RTE_ SETA 1" --predefine="STM32F10X_HD SETA 1" --list=context_rvds.lst ..
-/Middlewares/Third_Party/RealThread_RTOS/libcpu/arm/cortex-m3/context_rvds.S
+eil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include" -I"F:\keil 5\ARM\PACK\Keil\S
+TM32F1xx_DFP\2.2.0\Device\Include" --predefine="__UVISION_VERSION SETA 540" --p
+redefine="STM32F10X_HD SETA 1" --predefine="_RTE_ SETA 1" --list=context_rvds.l
+st ../Middlewares/Third_Party/RealThread_RTOS/libcpu/arm/cortex-m3/context_rvds
+.S
 
 
 

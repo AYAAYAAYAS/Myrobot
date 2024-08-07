@@ -324,7 +324,7 @@
             <wLevel>2</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>1</uC99>
+            <uC99>0</uC99>
             <useXO>0</useXO>
             <v6Lang>5</v6Lang>
             <v6LangP>3</v6LangP>
@@ -612,19 +612,14 @@
           <GroupName>USER</GroupName>
           <Files>
             <File>
-              <FileName>simple_motor_example.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\Src\simple_motor_example.c</FilePath>
-            </File>
-            <File>
-              <FileName>find_trace_GRAY.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\Src\find_trace_GRAY.c</FilePath>
-            </File>
-            <File>
               <FileName>OLED.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\Src\OLED.c</FilePath>
+            </File>
+            <File>
+              <FileName>Servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\Src\Servo.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -653,8 +648,8 @@
   <RTE>
     <apis/>
     <components>
-      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="4.3.0" condition="CMSIS Core">
-        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="4.5.0"/>
+      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.0.1" condition="ARMv6_7_8-M Device">
+        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="5.0.1"/>
         <targetInfos>
           <targetInfo name="control-motor"/>
         </targetInfos>

@@ -31,7 +31,11 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "pid.h"
+#include <stdio.h>
+#include "Servo.h"
+#include "OLED.h"
+#include "openmv.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

@@ -5,7 +5,7 @@ uint8_t buffer_1_i=0,buffer_1_f=0,buffer_2_i=0,buffer_2_f=0,buffer_3=0;
 float theta_err,rho_err;
 void openmv_receive(int16_t Com_Data)
 {
-	static uint8_t RxState=0;
+  	static uint8_t RxState=0;
 	static uint8_t RxCount=0;
 	static uint8_t RxBuffer[count]={0};			//接收缓存	
 	int i ;

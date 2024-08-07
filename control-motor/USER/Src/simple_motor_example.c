@@ -2,7 +2,7 @@
 几个简易的循迹小车行走函数
 */
 
-#include "simple_motor_example.h"
+#include "main.h"
 
 //定义使能通道A,B
 void ENA(int x){

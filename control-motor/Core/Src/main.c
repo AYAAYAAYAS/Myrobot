@@ -24,9 +24,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "find_trace_GRAY.h"
-#include "OLED.h"
-#include "openmv.h"
+
+
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -36,7 +36,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define PWM_X	TIM3->CCR1
+#define PWM_Y	TIM3->CCR2
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -48,6 +49,7 @@
 
 /* USER CODE BEGIN PV */
 extern float theta_err,rho_err;
+extern int Cx,Cy;
 uint8_t cmd;
 /* USER CODE END PV */
 
@@ -96,14 +98,17 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	OLED_Init();
 	HAL_UART_Receive_IT(&huart1,(void *)&cmd, 1); 
-	HAL_Delay(100);
-	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_RESET);
+	PID_Init(0.15,0.001,0.32,4.5,0.09,0.25);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		PWM_X+=Incremental_PID(TIM3->CCR1,30);
+		PWM_Y+=Incremental_PID(TIM3->CCR2,30);
+		PWM_X=limit_(PWM_X,2500);
+		PWM_Y=limit_(PWM_Y,2500);
 //		trace_red_2();
       /*
       0005 0027
