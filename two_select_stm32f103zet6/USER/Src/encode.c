@@ -1,5 +1,5 @@
-#include "encode.h"
-#include <math.h>
+#include "main.h"
+
 int myabs(int x)
 {
 	if(x<0)
@@ -35,10 +35,10 @@ int16_t Read_Encoder(uint8_t TIMX)
 功    能: 计算实际转速
 输    入: encoder_cnt：脉冲数；ppr：码盘数；ratio：减速比；cnt_time：计数时间(ms)
 返回  值: 车轮转速 rpm
-**************************************************************************/
+********************                       ******************************************************/
 float Moto_Speed(int encoder_cnt,uint16_t ppr,uint16_t ratio)
 {
-    encoder_cnt = abs(encoder_cnt);  
+    encoder_cnt = myabs(encoder_cnt);  
     return encoder_cnt*100/4/ppr/ratio;    /* 4倍频 */   
 }
 

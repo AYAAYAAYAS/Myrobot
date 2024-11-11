@@ -9,276 +9,63 @@ License Information: 1 Administrator, 1, LIC=76F5U-S4PLS-QDXKD-8HUUQ-CILFS-H85YP
  
 Tool Versions:
 Toolchain:       MDK-ARM Plus  Version: 5.40.0.3
-Toolchain Path:  F:\keil 5\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.06 update 5 (build 528)
-Assembler:       Armasm.exe V5.06 update 5 (build 528)
-Linker/Locator:  ArmLink.exe V5.06 update 5 (build 528)
-Library Manager: ArmAr.exe V5.06 update 5 (build 528)
-Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
+Toolchain Path:  F:\keil 5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.22
+Assembler:       Armasm.exe V6.22
+Linker/Locator:  ArmLink.exe V6.22
+Library Manager: ArmAr.exe V6.22
+Hex Converter:   FromElf.exe V6.22
 CPU DLL:         SARMCM3.DLL V5.40.0.3
-Dialog DLL:      DCM.DLL V1.17.5.0
+Dialog DLL:      D.DLL
 Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.3.0.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 F:\repositories\Myrobot\two_select_stm32f103zet6\MDK-ARM\2023E.uvprojx
-Project File Date:  07/29/2024
+Project File Date:  09/12/2024
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 5 (build 528)', folder: 'F:\keil 5\ARM\ARMCC\Bin'
-Build target '2023E'
+*** Using Compiler 'V6.22', folder: 'F:\keil 5\ARM\ARMCLANG\Bin'
+Rebuild target '2023E'
 Note: source file '..\USER\Src\OLED.c' - object file renamed from '2023E\OLED.o' to '2023E\oled_1.o'.
 assembling startup_stm32f103xe.s...
-compiling stm32f1xx_hal_gpio_ex.c...
 compiling stm32f1xx_hal_msp.c...
-compiling stm32f1xx_it.c...
-compiling gpio.c...
-compiling main.c...
-../Core/Src/main.c(198): warning:  #550-D: variable "Serial_RxData"  was set but never used
-  	uint16_t Serial_RxData;
-../Core/Src/main.c: 1 warning, 0 errors
 compiling usart.c...
+compiling gpio.c...
+compiling stm32f1xx_it.c...
+compiling main.c...
 compiling tim.c...
+compiling stm32f1xx_hal_gpio_ex.c...
 compiling stm32f1xx_hal.c...
 compiling stm32f1xx_hal_rcc_ex.c...
 compiling stm32f1xx_hal_gpio.c...
 compiling stm32f1xx_hal_pwr.c...
 compiling stm32f1xx_hal_cortex.c...
-compiling stm32f1xx_hal_dma.c...
 compiling stm32f1xx_hal_rcc.c...
-compiling stm32f1xx_hal_flash_ex.c...
-compiling system_stm32f1xx.c...
-compiling stm32f1xx_hal_exti.c...
+compiling stm32f1xx_hal_dma.c...
 compiling stm32f1xx_hal_flash.c...
-compiling stm32f1xx_hal_uart.c...
-compiling stm32f1xx_hal_tim_ex.c...
-compiling stm32f1xx_hal_tim.c...
-compiling MPU6050_I2C.c...
-..\Bsp\Src\MPU6050_I2C.c(7): warning:  #188-D: enumerated type mixed with another type
-  	HAL_GPIO_WritePin(
-PIOE, 
-PIO_PIN_1, BitValue);
-..\Bsp\Src\MPU6050_I2C.c(13): warning:  #188-D: enumerated type mixed with another type
-  	HAL_GPIO_WritePin(
-PIOE, 
-PIO_PIN_0, BitValue);
-..\Bsp\Src\MPU6050_I2C.c: 2 warnings, 0 errors
+compiling stm32f1xx_hal_flash_ex.c...
+compiling stm32f1xx_hal_exti.c...
+compiling system_stm32f1xx.c...
+compiling comserial.c...
 compiling openmv.c...
-..\Bsp\Src\openmv.c(78): warning:  #177-D: variable "theta_org"  was declared but never referenced
-  	uint8_t theta_org,rho_org;
-..\Bsp\Src\openmv.c(78): warning:  #177-D: variable "rho_org"  was declared but never referenced
-  	uint8_t theta_org,rho_org;
-..\Bsp\Src\openmv.c: 2 warnings, 0 errors
 compiling pid.c...
+compiling stm32f1xx_hal_tim_ex.c...
+compiling ano.c...
+compiling stm32f1xx_hal_uart.c...
+compiling MPU6050_I2C.c...
+compiling find_trace_GRAY.c...
 compiling MPU6050.c...
 compiling Delay.c...
-compiling comserial.c...
-..\hardware\comserial.c(117): warning:  #1-D: last line of file ends without a newline
-  }
-..\hardware\comserial.c: 1 warning, 0 errors
-compiling ano.c...
-..\Bsp\Src\ano.c(178): warning:  #111-D: statement is unreachable
-              break;                  
-..\Bsp\Src\ano.c: 1 warning, 0 errors
-compiling find_trace_GRAY.c...
-compiling clock.c...
-assembling context_rvds.S...
-compiling cpu.c...
-compiling components.c...
-compiling idle.c...
-compiling ipc.c...
-compiling irq.c...
-compiling mem.c...
-compiling kservice.c...
-compiling memheap.c...
-compiling mempool.c...
-compiling object.c...
-../Middlewares/Third_Party/RealThread_RTOS/src/object.c(533): warning:  #223-D: function "rt_strncmp" declared implicitly
-          if (rt_strncmp(object->name, name, RT_NAME_MAX) == 0)
-../Middlewares/Third_Party/RealThread_RTOS/src/object.c: 1 warning, 0 errors
-compiling scheduler.c...
-compiling slab.c...
-compiling thread.c...
-compiling timer.c...
-compiling cpuport.c...
 compiling encode.c...
-..\USER\Src\encode.c(41): warning:  #223-D: function "abs" declared implicitly
-      encoder_cnt = abs(encoder_cnt);  
-..\USER\Src\encode.c: 1 warning, 0 errors
-compiling Servo.c...
-compiling simple_motor_example.c...
-..\USER\Src\simple_motor_example.c(23): warning:  #188-D: enumerated type mixed with another type
-  		
-N1(1);
-..\USER\Src\simple_motor_example.c(23): warning:  #188-D: enumerated type mixed with another type
-  		
-N1(1);
-..\USER\Src\simple_motor_example.c(24): warning:  #188-D: enumerated type mixed with another type
-  		
-N2(0);
-..\USER\Src\simple_motor_example.c(24): warning:  #188-D: enumerated type mixed with another type
-  		
-N2(0);
-..\USER\Src\simple_motor_example.c(28): warning:  #188-D: enumerated type mixed with another type
-  		
-N1(0);
-..\USER\Src\simple_motor_example.c(28): warning:  #188-D: enumerated type mixed with another type
-  		
-N1(0);
-..\USER\Src\simple_motor_example.c(29): warning:  #188-D: enumerated type mixed with another type
-  		
-N2(1);
-..\USER\Src\simple_motor_example.c(29): warning:  #188-D: enumerated type mixed with another type
-  		
-N2(1);
-..\USER\Src\simple_motor_example.c(33): warning:  #188-D: enumerated type mixed with another type
-  		
-N3(1);
-..\USER\Src\simple_motor_example.c(33): warning:  #188-D: enumerated type mixed with another type
-  		
-N3(1);
-..\USER\Src\simple_motor_example.c(34): warning:  #188-D: enumerated type mixed with another type
-  		
-N4(0);
-..\USER\Src\simple_motor_example.c(34): warning:  #188-D: enumerated type mixed with another type
-  		
-N4(0);
-..\USER\Src\simple_motor_example.c(38): warning:  #188-D: enumerated type mixed with another type
-  			
-N3(0);
-..\USER\Src\simple_motor_example.c(38): warning:  #188-D: enumerated type mixed with another type
-  			
-N3(0);
-..\USER\Src\simple_motor_example.c(39): warning:  #188-D: enumerated type mixed with another type
-  		  
-N4(1);
-..\USER\Src\simple_motor_example.c(39): warning:  #188-D: enumerated type mixed with another type
-  		  
-N4(1);
-..\USER\Src\simple_motor_example.c(45): warning:  #223-D: function "abs" declared implicitly
-  		motor1=abs(motor1);
-..\USER\Src\simple_motor_example.c(56): warning:  #223-D: function "abs" declared implicitly
-  		motor2=abs(motor2);
-..\USER\Src\simple_motor_example.c(67): warning:  #188-D: enumerated type mixed with another type
-      
-N1(0);
-..\USER\Src\simple_motor_example.c(67): warning:  #188-D: enumerated type mixed with another type
-      
-N1(0);
-..\USER\Src\simple_motor_example.c(68): warning:  #188-D: enumerated type mixed with another type
-      
-N2(0);
-..\USER\Src\simple_motor_example.c(68): warning:  #188-D: enumerated type mixed with another type
-      
-N2(0);
-..\USER\Src\simple_motor_example.c(69): warning:  #188-D: enumerated type mixed with another type
-      
-N3(0);
-..\USER\Src\simple_motor_example.c(69): warning:  #188-D: enumerated type mixed with another type
-      
-N3(0);
-..\USER\Src\simple_motor_example.c(70): warning:  #188-D: enumerated type mixed with another type
-      
-N4(0);
-..\USER\Src\simple_motor_example.c(70): warning:  #188-D: enumerated type mixed with another type
-      
-N4(0);
-..\USER\Src\simple_motor_example.c: 26 warnings, 0 errors
-compiling APP_RTTHREAD.c...
-..\USER\Src\APP_RTTHREAD.c(80): warning:  #1-D: last line of file ends without a newline
-  }
-..\USER\Src\APP_RTTHREAD.c: 1 warning, 0 errors
 compiling OLED.c...
-..\USER\Src\OLED.c(12): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SCL(1);
-..\USER\Src\OLED.c(12): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SCL(1);
-..\USER\Src\OLED.c(13): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SDA(1);
-..\USER\Src\OLED.c(13): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SDA(1);
-..\USER\Src\OLED.c(23): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SDA(1);
-..\USER\Src\OLED.c(23): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SDA(1);
-..\USER\Src\OLED.c(24): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SCL(1);
-..\USER\Src\OLED.c(24): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SCL(1);
-..\USER\Src\OLED.c(25): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SDA(0);
-..\USER\Src\OLED.c(25): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SDA(0);
-..\USER\Src\OLED.c(26): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SCL(0);
-..\USER\Src\OLED.c(26): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SCL(0);
-..\USER\Src\OLED.c(36): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SDA(0);
-..\USER\Src\OLED.c(36): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SDA(0);
-..\USER\Src\OLED.c(37): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SCL(1);
-..\USER\Src\OLED.c(37): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SCL(1);
-..\USER\Src\OLED.c(38): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SDA(1);
-..\USER\Src\OLED.c(38): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SDA(1);
-..\USER\Src\OLED.c(51): warning:  #188-D: enumerated type mixed with another type
-  		
-LED_W_SDA(Byte & (0x80 >> i));
-..\USER\Src\OLED.c(51): warning:  #188-D: enumerated type mixed with another type
-  		
-LED_W_SDA(Byte & (0x80 >> i));
-..\USER\Src\OLED.c(52): warning:  #188-D: enumerated type mixed with another type
-  		
-LED_W_SCL(1);
-..\USER\Src\OLED.c(52): warning:  #188-D: enumerated type mixed with another type
-  		
-LED_W_SCL(1);
-..\USER\Src\OLED.c(53): warning:  #188-D: enumerated type mixed with another type
-  		
-LED_W_SCL(0);
-..\USER\Src\OLED.c(53): warning:  #188-D: enumerated type mixed with another type
-  		
-LED_W_SCL(0);
-..\USER\Src\OLED.c(56): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SCL(1);	//额外的一个时钟，不处理应答信�?
-..\USER\Src\OLED.c(56): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SCL(1);	//额外的一个时钟，不处理应答信�?
-..\USER\Src\OLED.c(57): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SCL(0);
-..\USER\Src\OLED.c(57): warning:  #188-D: enumerated type mixed with another type
-  	
-LED_W_SCL(0);
-..\USER\Src\OLED.c: 28 warnings, 0 errors
-compiling board.c...
+compiling simple_motor_example.c...
+compiling Servo.c...
+compiling stm32f1xx_hal_tim.c...
 linking...
-Program Size: Code=17126 RO-data=2210 RW-data=164 ZI-data=4548  
+Program Size: Code=10858 RO-data=362 RW-data=12 ZI-data=2332  
 FromELF: creating hex file...
-"2023E\2023E.axf" - 0 Error(s), 64 Warning(s).
+"2023E\2023E.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -302,7 +89,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE@6.1.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:42
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

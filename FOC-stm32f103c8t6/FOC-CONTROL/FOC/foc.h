@@ -14,7 +14,9 @@
 #define _2PI 6.28318530718
 #define _3PI_2 4.71238898038
 #define _PI_6 0.52359877559
-
+#define PWM_A TIM2->CCR1
+#define PWM_B TIM2->CCR2
+#define PWM_C TIM2->CCR3
 typedef enum{
     CW = 1,
     CCW = -1,
@@ -22,12 +24,12 @@ typedef enum{
 }Direction;
 
 void setPwm(float Ua, float Ub, float Uc);
-float setTorque(float Uq,float angle_el);
+void setPhaseVoltage(float Uq,float angle_el);
 float _normalizeAngle(float angle);
 void FOC_Vbus(float power_supply);
 void FOC_alignSensor(int _PP,int _DIR);
-float _electricalAngle();
+float _electricalAngle(float shaft_angle, int pole_pairs);
 float FOC_M0_Angle();
-
+float velocityOpenloop(float target_velocity);
 
 #endif

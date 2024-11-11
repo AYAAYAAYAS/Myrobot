@@ -24,22 +24,16 @@
 #include <stdio.h>
 uint8_t data_buff[1];
 
- #ifdef __GNUC__
-     #define PUTCHAR_PROTOTYPE int _io_putchar(int ch)
- #else
-     #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
- #endif /* __GNUC__*/
- 
- /******************************************************************
-     *@brief  Retargets the C library printf  function to the USART.
-     *@param  None
-     *@retval None
- ******************************************************************/
- PUTCHAR_PROTOTYPE
- {
-     HAL_UART_Transmit(&huart2, (uint8_t *)&ch,1,0xFFFF);
-     return ch;
- }
+FILE  __stdout;  
+
+/* 重定义fputc函数, printf函数最终会通过调用fputc输出字符串到串口 */
+int fputc(int ch, FILE *f)
+{
+    while ((USART1->SR & 0X40) == 0);               /* 等待上一个字符发送完成 */
+
+    USART1->DR = (uint8_t)ch;                       /* 将要发送的字符 ch 写入到DR寄存器 */
+    return ch;
+}
 
 /* USER CODE END 0 */
 

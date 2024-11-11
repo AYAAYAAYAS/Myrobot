@@ -254,6 +254,15 @@ OPENCV__SOURCE_DIR:STATIC=F:/repositories/Myrobot/OPENCV_
 //The directory containing a CMake configuration file for OpenCV.
 OpenCV_DIR:PATH=OpenCV_DIR-NOTFOUND
 
+//Value Computed by CMake
+detect_BINARY_DIR:STATIC=F:/repositories/Myrobot/OPENCV_/cmake-build-debug-c
+
+//Value Computed by CMake
+detect_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+detect_SOURCE_DIR:STATIC=F:/repositories/Myrobot/OPENCV_
+
 
 ########################
 # INTERNAL cache entries

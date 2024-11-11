@@ -2,9 +2,6 @@
 几个简易的循迹小车行走函数
 */
 #include "main.h"
-
-#include "simple_motor_example.h"
-
 int limit(int data,int max)
 {	
     if(data<-max) data=-max;	
@@ -42,7 +39,7 @@ void set_motor(int motor1,int motor2)
 //限幅
 	if(motor1)
 	{
-		motor1=abs(motor1);
+		motor1=myabs(motor1);
 		PWM_1 = limit(motor1,MAX);
 	}
 	else
@@ -53,7 +50,7 @@ void set_motor(int motor1,int motor2)
 
 	if(motor2)
 	{
-		motor2=abs(motor2);
+		motor2=myabs(motor2);
 		PWM_2 = limit(motor2,MAX);
 	}
 	else

@@ -194,9 +194,14 @@ void AS5600_Init(void)
     velocity_calc_timestamp=0;
 }
 
+float getRawAngle()
+{
+  return AS5600_ReadTwoByte(RAW_Angle_Hi);
+}
+
 float getAngle_Without_track()
 {
-  return getRawAngle()*0.08789* PI / 180;    //得到弧度制的角度
+  return getRawAngle()*0.08789* _PI / 180;    //得到弧度制的角度
 }
 
 

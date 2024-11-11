@@ -1,22 +1,17 @@
 #include "main.h"
-#include "foc.h"
 
-
-#define PWM_A TIM1->CCR1
-#define PWM_B TIM1->CCR2
-#define PWM_C TIM1->CCR3
 #define M1_Enable HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,GPIO_PIN_SET)
 #define M1_Disable HAL_GPIO_WritePin(GPIOA,GPIO_PIN_4,GPIO_PIN_RESET)
 
-#define _constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
+#define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
-float voltage_power_supply;
+float voltage_power_supply=12.6;
 float voltage_limit;
 float voltage_sensor_align;
-
+float zero_electric_angle=0;
 float Ualpha ,Ubeta=0 ,Ua=0 ,Ub=0 ,Uc=0;
 int PP,DIR;  //磁极对数
-
+float shaft_angle=0;
 void Motor_Init(void){
     if(voltage_sensor_align>voltage_limit)
         voltage_sensor_align = voltage_limit;
@@ -37,27 +32,70 @@ void setPwm(float Ua, float Ub, float Uc) {
 
   // 计算占空比
   // 限制占空比从0到1
-  float dc_a = _constrain(Ua / voltage_power_supply, 0.0f , 1.0f );
-  float dc_b = _constrain(Ub / voltage_power_supply, 0.0f , 1.0f );
-  float dc_c = _constrain(Uc / voltage_power_supply, 0.0f , 1.0f );
+  float dc_a = constrain(Ua / voltage_power_supply, 0.0f , 1.0f );
+  float dc_b = constrain(Ub / voltage_power_supply, 0.0f , 1.0f );
+  float dc_c = constrain(Uc / voltage_power_supply, 0.0f , 1.0f );
 
-  PWM_A=dc_a*4095;
-  PWM_B=dc_b*4095;
-  PWM_C=dc_c*4095;
+  PWM_A=dc_a*1260;
+  PWM_B=dc_b*1260;
+  PWM_C=dc_c*1260;
 }
 
-void setTorque(float Uq,float angle_el) {
-  Uq=_constrain(Uq,-voltage_power_supply/2,voltage_power_supply/2);
+void setPhaseVoltage(float Uq,float angle_el)
+{
+	uint32_t sector;
+	float T0,T1,T2;
+  Uq=constrain(Uq,-voltage_power_supply/2,voltage_power_supply/2);
   float Ud=0;
   angle_el = _normalizeAngle(angle_el);
   // 帕克逆变换
   Ualpha =  -Uq*sin(angle_el); 
   Ubeta =   Uq*cos(angle_el); 
-
-  // 克拉克逆变换
-  Ua = Ualpha + voltage_power_supply/2;
+	Ua = Ualpha + voltage_power_supply/2;
   Ub = (sqrt(3)*Ubeta-Ualpha)/2 + voltage_power_supply/2;
   Uc = (-Ualpha-sqrt(3)*Ubeta)/2 + voltage_power_supply/2;
+  // 克拉克逆变换
+//	sector = (angle_el / _PI_3) + 1;
+//  T0 = 1 - T1 - T2;
+//  T1 = sqrt(3)*sin(sector*_PI_3 - angle_el)*Uq;
+//  T2 = (-Ualpha-sqrt(3)*Ubeta)/2 + voltage_power_supply/2;
+//	switch(sector)
+//	{
+//		case 1:
+//			Ua = T1 + T2 + T0/2;
+//			Ub = T2 + T0/2;
+//			Uc = T0/2;
+//			break;
+//		case 2:
+//			Ua = T1 +  T0/2;
+//			Ub = T1 + T2 + T0/2;
+//			Uc = T0/2;
+//			break;
+//		case 3:
+//			Ua = T0/2;
+//			Ub = T1 + T2 + T0/2;
+//			Uc = T2 + T0/2;
+//			break;
+//		case 4:
+//			Ua = T0/2;
+//			Ub = T1+ T0/2;
+//			Uc = T1 + T2 + T0/2;
+//			break;
+//		case 5:
+//			Ua = T2 + T0/2;
+//			Ub = T0/2;
+//			Uc = T1 + T2 + T0/2;
+//			break;
+//		case 6:
+//			Ua = T1 + T2 + T0/2;
+//			Ub = T0/2;
+//			Uc = T1 + T0/2;
+//			break;
+//		default:  // possible error state
+//			Ua = 0;
+//			Ub = 0;
+//			Uc = 0;
+//	}
   setPwm(Ua,Ub,Uc);
 }
 
@@ -69,21 +107,31 @@ void FOC_Vbus(float power_supply)
 
 
 //电角度
- float _electricalAngle(){
-  return  _normalizeAngle((float)(DIR *  PP) * getAngle_Without_track()-zero_electric_angle);
+ float _electricalAngle(float shaft_angle, int pole_pairs)
+{
+  return (shaft_angle * pole_pairs);
 }
 
 void FOC_alignSensor(int _PP,int _DIR)
 { 
   PP=_PP;
   DIR=_DIR;
-  setTorque(3, _3PI_2);
+ setPhaseVoltage(3, _3PI_2);
   HAL_Delay(3000);
-  zero_electric_angle=_electricalAngle();
-  setTorque(0, _3PI_2);
+  zero_electric_angle=_electricalAngle(shaft_angle,7);
+  setPhaseVoltage(0, _3PI_2);
 }
 
 float FOC_M0_Angle()
 {
   return getAngle();
+}
+//开环速度
+float velocityOpenloop(float target_velocity)
+{
+	float Ts=10;//设置间隔时间为10ms
+	shaft_angle=_normalizeAngle(shaft_angle+target_velocity*Ts);
+	float Uq = voltage_power_supply/3;
+	setPhaseVoltage(Uq,_electricalAngle(shaft_angle, 7));
+	return Uq;
 }

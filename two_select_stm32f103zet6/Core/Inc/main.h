@@ -36,11 +36,8 @@ extern "C" {
 #include "openmv.h"
 #include "encode.h"
 #include "pid.h"
-#include "ano.h"
-#include "MPU6050.h"
 #include "Delay.h"
 #include "Servo.h"	
-#include "APP_RTTHREAD.h"	
 #include "comserial.h"
 #include <math.h>
 /* USER CODE END Includes */

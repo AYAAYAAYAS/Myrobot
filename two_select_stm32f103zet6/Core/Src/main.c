@@ -85,7 +85,6 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	MX_RT_Thread_Init();
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -115,7 +114,6 @@ int main(void)
   MX_TIM8_Init();
   /* USER CODE BEGIN 2 */
 		OLED_Init();
-		MPU6050_Init();
 //	HAL_UART_Receive_IT(&huart1,(void *)&cmd, 1); 	
  
   /* USER CODE END 2 */
@@ -131,7 +129,7 @@ int main(void)
 //		speed = Moto_Speed(Reality_Velocity[1],500,30,100);
 
 //	
-//		printf("串口打印测试\n");
+		printf("串口打印测试\n");
 //		HAL_Delay(1000);
 //		Target_Position_L=Num_Encoder_Cnt(2,11,9.6);  
 //		Target_Position_R=Num_Encoder_Cnt(2,11,9.6);
